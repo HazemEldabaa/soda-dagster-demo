@@ -1,4 +1,0 @@
-Usage: dbt [OPTIONS] COMMAND [ARGS]...
-Try 'dbt -h' for help.
-
-Error: No such command 'build --select marts'.
