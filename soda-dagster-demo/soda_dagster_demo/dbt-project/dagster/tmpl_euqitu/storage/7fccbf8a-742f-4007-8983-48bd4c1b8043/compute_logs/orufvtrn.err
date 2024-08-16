@@ -1,0 +1,39 @@
+[32m2024-08-13 21:25:00 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - 62089 - LOGS_CAPTURED - Started capturing logs in process (pid: 62089).
+[32m2024-08-13 21:25:00 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - 62089 - dbt_staging - STEP_START - Started execution of step "dbt_staging".
+[32m2024-08-13 21:25:00 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - dbt_staging - Copying `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/soda-dagster-demo/soda_dagster_demo/dagsteretl/target/partial_parse.msgpack` to `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/soda-dagster-demo/soda_dagster_demo/dagsteretl/target/e362592/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2024-08-13 21:25:00 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - dbt_staging - Running dbt command: `dbt build --select marts`.
+[32m2024-08-13 21:25:01 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - dbt_staging - Finished dbt command: `dbt build --select marts`.
+[32m2024-08-13 21:25:01 +0200[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 7fccbf8a-742f-4007-8983-48bd4c1b8043 - 62089 - dbt_staging - STEP_FAILURE - Execution of step "dbt_staging" failed.
+
+dagster_dbt.errors.DagsterDbtCliRuntimeError: The dbt CLI process with command
+
+`dbt build --select marts`
+
+failed with exit code `2`. Check the stdout in the Dagster compute logs for the full information about the error.
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 167, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/soda-dagster-demo/soda_dagster_demo/dagsteretl/dbttest/dbttest/assets.py", line 592, in dbt_staging
+    yield from dbt.cli(["build --select marts"], manifest=dagsteretl_project.manifest_path).stream()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_event_iterator.py", line 203, in __next__
+    return next(self._inner_iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 269, in _stream_asset_events
+    for event in self.stream_raw_events():
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 362, in stream_raw_events
+    self._raise_on_error()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 454, in _raise_on_error
+    raise error
+[0m
