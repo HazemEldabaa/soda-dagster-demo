@@ -1,0 +1,16 @@
+data_source dagsterredshift:
+  type: redshift
+  host: ${REDSHIFT_HOST}
+  username: ${DB_USERNAME}
+  password: ${DB_PASSWORD}
+  database: ${DB_NAME}
+  schema: ${DB_SCHEMA}
+  access_key_id: ${AWS_KEY}
+  secret_access_key: ${AWS_SECRET}
+  role_arn: ${ROLE_ARN}
+  region: ${AWS_REGION}
+
+soda_cloud:
+  host: demo.soda.io
+  api_key_id: ${SODA_KEY}
+  api_key_secret: ${SODA_SECRET}
