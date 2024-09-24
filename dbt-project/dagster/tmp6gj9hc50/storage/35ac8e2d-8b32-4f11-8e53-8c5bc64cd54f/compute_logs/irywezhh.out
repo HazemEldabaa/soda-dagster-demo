@@ -1,0 +1,8 @@
+Starting SodaAPI to Redshift Tables.....
+Fetching all datasets on page: 0
+Fetching all datasets on page: 1
+Fetching all datasets on page: 2
+Fetching all datasets on page: 3
+Fetching all checks on page 0
+Value exceeds 500 characters: checks for customers:
+  - missing_count(phone) = 0... (truncated)

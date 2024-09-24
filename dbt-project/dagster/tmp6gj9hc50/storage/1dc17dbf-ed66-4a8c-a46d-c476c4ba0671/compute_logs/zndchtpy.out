@@ -1,0 +1,55 @@
+Starting SodaAPI to Redshift Tables.....
+Fetching all datasets on page: 0
+Fetching all datasets on page: 1
+Fetching all datasets on page: 2
+Fetching all datasets on page: 3
+Fetching all checks on page 0
+         record_created  ... datasource_type
+0   2024-09-24 20:23:56  ...        redshift
+1   2024-09-24 20:23:56  ...            dask
+2   2024-09-24 20:23:56  ...        redshift
+3   2024-09-24 20:23:56  ...            dask
+4   2024-09-24 20:23:56  ...        postgres
+5   2024-09-24 20:23:56  ...        postgres
+6   2024-09-24 20:23:56  ...        postgres
+7   2024-09-24 20:23:56  ...        postgres
+8   2024-09-24 20:23:56  ...        postgres
+9   2024-09-24 20:23:56  ...        postgres
+10  2024-09-24 20:23:56  ...            dask
+11  2024-09-24 20:23:56  ...        redshift
+12  2024-09-24 20:23:56  ...            dask
+13  2024-09-24 20:23:56  ...        postgres
+14  2024-09-24 20:23:56  ...        postgres
+15  2024-09-24 20:23:56  ...        postgres
+16  2024-09-24 20:23:56  ...        postgres
+17  2024-09-24 20:23:56  ...        postgres
+18  2024-09-24 20:23:56  ...        redshift
+19  2024-09-24 20:23:56  ...        postgres
+20  2024-09-24 20:23:56  ...            dask
+21  2024-09-24 20:23:56  ...        redshift
+22  2024-09-24 20:23:56  ...            dask
+23  2024-09-24 20:23:56  ...        redshift
+24  2024-09-24 20:23:56  ...        redshift
+25  2024-09-24 20:23:56  ...        redshift
+26  2024-09-24 20:23:56  ...        redshift
+27  2024-09-24 20:23:56  ...        redshift
+28  2024-09-24 20:23:56  ...        redshift
+29  2024-09-24 20:23:56  ...        redshift
+30  2024-09-24 20:23:56  ...        redshift
+
+[31 rows x 11 columns]
+         record_created  ...   DATA_QUALITY_DIMENSION
+0   2024-09-24 20:23:56  ...                      nan
+1   2024-09-24 20:23:56  ...                      nan
+2   2024-09-24 20:23:56  ...                      nan
+3   2024-09-24 20:23:56  ...                      nan
+4   2024-09-24 20:23:56  ...                      nan
+..                  ...  ...                      ...
+79  2024-09-24 20:23:56  ...             Completeness
+80  2024-09-24 20:23:56  ...  Consistency, Uniqueness
+81  2024-09-24 20:23:56  ...  Consistency, Uniqueness
+82  2024-09-24 20:23:56  ...                      nan
+83  2024-09-24 20:23:56  ...                      nan
+
+[84 rows x 25 columns]
+The following tables in Redshift were updated successfully: DATASETS_REPORT, CHECKS_REPORT

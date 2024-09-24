@@ -1,0 +1,9 @@
+Running with dbt=1.8.4
+Registered adapter: redshift=1.8.1
+[[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 3 unused configuration paths:
+- models.dbt-project
+- models.dbt-project.marts
+- models.dbt-project.staging
+Found 4 models, 2 sources, 486 macros
+

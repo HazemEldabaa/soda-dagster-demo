@@ -1,0 +1,21 @@
+Running with dbt=1.8.4
+Registered adapter: redshift=1.8.1
+[[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 3 unused configuration paths:
+- models.dbt-project.staging
+- models.dbt-project.marts
+- models.dbt-project
+Found 4 models, 2 sources, 486 macros
+
+Concurrency: 2 threads (target='dev')
+
+1 of 2 START sql table model demo_staging.t_product_popularity ................. [RUN]
+2 of 2 START sql table model demo_staging.t_sales_summary ...................... [RUN]
+1 of 2 OK created sql table model demo_staging.t_product_popularity ............ [[32mSUCCESS[0m in 5.54s]
+2 of 2 OK created sql table model demo_staging.t_sales_summary ................. [[32mSUCCESS[0m in 5.53s]
+
+Finished running 2 table models in 0 hours 0 minutes and 8.08 seconds (8.08s).
+
+[32mCompleted successfully[0m
+
+Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2

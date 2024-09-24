@@ -9,8 +9,8 @@ WITH order_data AS (
         sum(oi.list_price * oi.quantity) AS order_total,
         count(DISTINCT o.order_id) AS total_orders,
         count(DISTINCT o.customer_id) AS total_customers
-    FROM {{source('dev','orders')}} o
-    LEFT JOIN dev.demo.order_items oi ON o.order_id = oi.order_id
+    FROM dev.demo.orders o
+    LEFT JOIN {{source('dev','order_items')}} oi ON o.order_id = oi.order_id
     GROUP BY o.store_id, o.order_id
 )
 SELECT

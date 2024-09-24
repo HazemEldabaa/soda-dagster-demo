@@ -101,6 +101,11 @@ def export_report():
     df_datasets["datasource_type"] = df_datasets["datasource"].apply(
         lambda x: x["type"] if x else None
     )
+    
+    # Drop the "owners" column before inserting
+    if "owners" in df_datasets.columns:
+        df_datasets.drop(columns=["owners"], inplace=True)
+    
     df_datasets.drop(columns=["datasource"], inplace=True)
 
     # Fetch all Checks
@@ -145,7 +150,7 @@ def export_report():
 
     df_checks = pd.DataFrame(checks)
 
-    # Clean up checks_dataframe
+    # Clean up df_checks
     df_checks.insert(0, "record_created", current_time)
     df_checks["dataset_id"] = df_checks["datasets"].apply(
         lambda x: x[0]["id"] if x else None
@@ -215,7 +220,7 @@ def export_report():
             return cur.fetchone()[0]
 
     def create_table(conn, df, table_name):
-        columns_with_types = ", ".join([f"{col} VARCHAR(500)" for col in df.columns])
+        columns_with_types = ", ".join([f"{col} VARCHAR(1000)" for col in df.columns])
         query = f"CREATE TABLE {table_name} ({columns_with_types})"
         execute_query(conn, query)
 
@@ -223,10 +228,18 @@ def export_report():
         columns = ", ".join(df.columns)
         values = ", ".join(["%s"] * len(df.columns))
         insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
+        
         with conn.cursor() as cur:
             for row in df.itertuples(index=False, name=None):
-                cur.execute(insert_query, row)
+                # Truncate any string value exceeding 500 characters
+                truncated_row = tuple(
+                    (str(item)[:500] if isinstance(item, str) and len(item) > 500 else item) 
+                    for item in row
+                )
+                cur.execute(insert_query, truncated_row)
             conn.commit()
+
+
 
     # Check for existing table and add new columns if needed
     def update_table_structure(conn, df, table_name):
@@ -241,12 +254,14 @@ def export_report():
             ]
             for col in new_columns:
                 alter_table_query = sql.SQL(
-                    "ALTER TABLE {} ADD COLUMN {} VARCHAR"
+                    "ALTER TABLE {} ADD COLUMN {} VARCHAR(1000)"
                 ).format(sql.Identifier(table_name), sql.Identifier(col))
                 execute_query(conn, alter_table_query)
                 print(f"Added new column {col} to {table_name}")
 
     # Create or update datasets table
+    print(df_datasets)
+    print(df_checks)
     if not table_exists(conn, datasets_table):
         create_table(conn, df_datasets, datasets_table)
     else:
@@ -268,3 +283,6 @@ def export_report():
     )
     # Close connection
     conn.close()
+
+if __name__=='__main__':
+    export_report()

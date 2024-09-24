@@ -1,0 +1,30 @@
+[32m2024-09-24 21:16:21 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - LOGS_CAPTURED - Started capturing logs in process (pid: 49434).
+[32m2024-09-24 21:16:21 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - STEP_START - Started execution of step "soda_UI_check".
+[32m2024-09-24 21:16:22 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - soda_UI_check - Request successful
+[32m2024-09-24 21:16:33 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - soda_UI_check - Scan failed with status: completedWithErrors
+[32m2024-09-24 21:16:34 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - ASSET_CHECK_EVALUATION - ASSET_CHECK_EVALUATION for step soda_UI_check
+[32m2024-09-24 21:16:34 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - STEP_OUTPUT - Yielded output "staging__t_sales_summary_soda_UI_check" of type "Any". (Type check passed).
+[32m2024-09-24 21:16:34 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - ASSET_CHECK_EVALUATION - ASSET_CHECK_EVALUATION for step soda_UI_check
+[32m2024-09-24 21:16:34 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - STEP_OUTPUT - Yielded output "staging__t_product_popularity_soda_UI_check" of type "Any". (Type check passed).
+[32m2024-09-24 21:16:34 +0200[0m - dagster - [34mERROR[0m - [31mstaging_pipeline - eca3a0d9-2c8b-4cef-b807-1c88bec30c6a - 49434 - soda_UI_check - STEP_FAILURE - Execution of step "soda_UI_check" failed.
+
+dagster._core.definitions.events.Failure: One or more Soda Cloud checks failed. Please check your Soda Cloud account for more details.
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 167, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/pipeline/assets.py", line 801, in soda_UI_check
+    raise Failure("One or more Soda Cloud checks failed. Please check your Soda Cloud account for more details.")
+[0m

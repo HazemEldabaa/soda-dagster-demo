@@ -1,0 +1,26 @@
+Running with dbt=1.8.4
+Registered adapter: redshift=1.8.1
+[[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 3 unused configuration paths:
+- models.dbt-project
+- models.dbt-project.staging
+- models.dbt-project.marts
+Found 4 models, 2 sources, 486 macros
+
+Concurrency: 2 threads (target='dev')
+
+1 of 2 START sql table model demo.prod_product_popularity ...................... [RUN]
+2 of 2 START sql table model demo.prod_sales_summary ........................... [RUN]
+1 of 2 ERROR creating sql table model demo.prod_product_popularity ............. [[31mERROR[0m in 0.55s]
+2 of 2 OK created sql table model demo.prod_sales_summary ...................... [[32mSUCCESS[0m in 2.29s]
+
+Finished running 2 table models in 0 hours 0 minutes and 4.37 seconds (4.37s).
+
+[31mCompleted with 1 error and 0 warnings:[0m
+
+  Database Error in model prod_product_popularity (models/prod/prod_product_popularity.sql)
+  syntax error at or near "group" in context "p.product_id
+      group", at line 26, column 5
+  compiled Code at target/dbt_prod-7330f35-76d4c22/run/dagsteretl/models/prod/prod_product_popularity.sql
+
+Done. PASS=1 WARN=0 ERROR=1 SKIP=0 TOTAL=2

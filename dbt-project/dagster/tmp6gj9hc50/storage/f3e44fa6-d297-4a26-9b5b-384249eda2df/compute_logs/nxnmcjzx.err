@@ -1,0 +1,55 @@
+[32m2024-09-24 11:42:02 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - 24422 - LOGS_CAPTURED - Started capturing logs in process (pid: 24422).
+[32m2024-09-24 11:42:02 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - 24422 - dbt_prod - STEP_START - Started execution of step "dbt_prod".
+[32m2024-09-24 11:42:02 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - dbt_prod - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'prod']`.
+[32m2024-09-24 11:42:02 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - dbt_prod - Copying `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/target/partial_parse.msgpack` to `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/target/dbt_prod-f3e44fa-d18bc53/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2024-09-24 11:42:02 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - dbt_prod - Running dbt command: `dbt build --select prod`.
+[32m2024-09-24 11:42:07 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - dbt_prod - Finished dbt command: `dbt build --select prod`.
+[32m2024-09-24 11:42:07 +0200[0m - dagster - [34mERROR[0m - [31mprod_pipeline - f3e44fa6-d297-4a26-9b5b-384249eda2df - 24422 - dbt_prod - STEP_FAILURE - Execution of step "dbt_prod" failed.
+
+dagster_dbt.errors.DagsterDbtCliRuntimeError: The dbt CLI process with command
+
+`dbt build --select prod`
+
+failed with exit code `1`. Check the stdout in the Dagster compute logs for the full information about the error, or view the dbt debug log: /Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/target/dbt_prod-f3e44fa-d18bc53/dbt.log.
+
+Errors parsed from dbt logs:
+
+1 of 2 ERROR creating sql table model demo.prod_product_popularity ............. [[31mERROR[0m in 0.59s]
+
+2 of 2 ERROR creating sql table model demo.prod_sales_summary .................. [[31mERROR[0m in 0.59s]
+
+  Database Error in model prod_product_popularity (models/prod/prod_product_popularity.sql)
+  syntax error at or near "group" in context "p.product_id
+      group", at line 26, column 5
+  compiled Code at target/dbt_prod-f3e44fa-d18bc53/run/dagsteretl/models/prod/prod_product_popularity.sql
+
+  Database Error in model prod_sales_summary (models/prod/prod_sales_summary.sql)
+  column o.store_id does not exist
+  compiled Code at target/dbt_prod-f3e44fa-d18bc53/run/dagsteretl/models/prod/prod_sales_summary.sql
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 167, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/pipeline/assets.py", line 775, in dbt_prod
+    yield from dbt.cli(["build"], context=context, manifest=dagsteretl_project.manifest_path).stream()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_event_iterator.py", line 203, in __next__
+    return next(self._inner_iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 269, in _stream_asset_events
+    for event in self.stream_raw_events():
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 362, in stream_raw_events
+    self._raise_on_error()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 454, in _raise_on_error
+    raise error
+[0m

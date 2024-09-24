@@ -1,0 +1,27 @@
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+Fetching all datasets on page: 0
+Fetching all datasets on page: 1
+Fetching all datasets on page: 2
+Fetching all datasets on page: 3
+Check 'ingestion_Invalid_row_count_for_brands_for_checks_for_brands' - FAILED
+Check 'ingestion_Brand_must_have_ID_for_checks_for_brands' - FAILED
+Check 'ingestion_Unique_brand_for_checks_for_brands' - FAILED
+Check 'ingestion_Invalid_row_count_for_stores_for_checks_for_stores' - FAILED
+Check 'ingestion_Store_must_have_ID_for_checks_for_stores' - FAILED
+Check 'ingestion_Email_validity_for_checks_for_stores' - FAILED
+Check 'ingestion_Phone_number_validity_for_checks_for_stores' - FAILED
+Check 'ingestion_Row_count_for_stocks_for_checks_for_stocks' - FAILED
+Check 'ingestion_Cross_check_Store_ID_for_checks_for_stocks' - FAILED
+Check 'ingestion_Cross_check_Product_ID_for_checks_for_stocks' - FAILED
+Check 'ingestion_No_negative_quantities_for_checks_for_stocks' - FAILED
+Check 'ingestion_Row_count_for_products_for_checks_for_products' - FAILED
+Check 'ingestion_Missing_phone_number_for_checks_for_customers' - FAILED
+Check 'ingestion_Shipment_Late_for_checks_for_orders' - FAILED

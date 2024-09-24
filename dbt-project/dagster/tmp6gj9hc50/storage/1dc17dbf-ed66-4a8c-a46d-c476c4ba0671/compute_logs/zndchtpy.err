@@ -1,0 +1,14 @@
+[32m2024-09-24 20:23:53 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - LOGS_CAPTURED - Started capturing logs in process (pid: 44490).
+[32m2024-09-24 20:23:53 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - export_report - STEP_START - Started execution of step "export_report".
+[32m2024-09-24 20:23:53 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Starting SodaAPI to Redshift Tables.....
+[32m2024-09-24 20:23:55 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Fetching all datasets on page: 0
+[32m2024-09-24 20:23:55 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Fetching all datasets on page: 1
+[32m2024-09-24 20:23:56 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Fetching all datasets on page: 2
+[32m2024-09-24 20:23:56 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Fetching all datasets on page: 3
+[32m2024-09-24 20:23:57 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Fetching all checks on page 0
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mINFO[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - The following tables in Redshift were updated successfully: DATASETS_REPORT, CHECKS_REPORT
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - export_report - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - export_report - Writing file at: /Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/tmp6gj9hc50/storage/export_report using PickledObjectFilesystemIOManager...
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - export_report - ASSET_MATERIALIZATION - Materialized value export_report.
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - export_report - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-09-24 20:24:11 +0200[0m - dagster - [34mDEBUG[0m - prod_pipeline - 1dc17dbf-ed66-4a8c-a46d-c476c4ba0671 - 44490 - export_report - STEP_SUCCESS - Finished execution of step "export_report" in 18.82s.

@@ -1,0 +1,32 @@
+[32m2024-09-17 16:34:21 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 4bfcc0d0-4617-4d27-8b1e-f5049aa9712f - 93653 - LOGS_CAPTURED - Started capturing logs in process (pid: 93653).
+[32m2024-09-17 16:34:21 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 4bfcc0d0-4617-4d27-8b1e-f5049aa9712f - 93653 - staging__t_sales_summary_soda_UI_check - STEP_START - Started execution of step "staging__t_sales_summary_soda_UI_check".
+[32m2024-09-17 16:34:21 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 4bfcc0d0-4617-4d27-8b1e-f5049aa9712f - staging__t_sales_summary_soda_UI_check - Request successful
+[32m2024-09-17 16:34:32 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 4bfcc0d0-4617-4d27-8b1e-f5049aa9712f - staging__t_sales_summary_soda_UI_check - Scan failed with status: completedWithErrors
+[32m2024-09-17 16:34:32 +0200[0m - dagster - [34mERROR[0m - [31mstaging_pipeline - 4bfcc0d0-4617-4d27-8b1e-f5049aa9712f - 93653 - staging__t_sales_summary_soda_UI_check - STEP_FAILURE - Execution of step "staging__t_sales_summary_soda_UI_check" failed.
+
+dagster._core.definitions.events.Failure: Soda Cloud Check Failed
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 167, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute_generator.py", line 141, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/pipeline/assets.py", line 580, in soda_UI_check
+    state = trigger_scan()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/pipeline/assets.py", line 310, in trigger_scan
+    raise Failure('Soda Cloud Check Failed')
+[0m

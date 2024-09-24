@@ -1,0 +1,9 @@
+[32m2024-09-24 10:15:58 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - LOGS_CAPTURED - Started capturing logs in process (pid: 19263).
+[32m2024-09-24 10:15:58 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - STEP_START - Started execution of step "soda_UI_check".
+[32m2024-09-24 10:15:58 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - soda_UI_check - Request successful
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - soda_UI_check - Scan failed with status: completedWithErrors
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - ASSET_CHECK_EVALUATION - ASSET_CHECK_EVALUATION for step soda_UI_check
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - STEP_OUTPUT - Yielded output "staging__t_sales_summary_soda_UI_check" of type "Any". (Type check passed).
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - ASSET_CHECK_EVALUATION - ASSET_CHECK_EVALUATION for step soda_UI_check
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - STEP_OUTPUT - Yielded output "staging__t_product_popularity_soda_UI_check" of type "Any". (Type check passed).
+[32m2024-09-24 10:16:09 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7bf326b8-5423-47a4-93f5-b47d8b2b9ec7 - 19263 - soda_UI_check - STEP_SUCCESS - Finished execution of step "soda_UI_check" in 10.92s.

@@ -1,0 +1,14 @@
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+Fetching all datasets on page: 0
+Fetching all datasets on page: 1
+Fetching all datasets on page: 2
+Fetching all datasets on page: 3
+Cloud URLs: [{'table_name': 'brands', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/48724ca5-26ff-49c4-9881-ee57c153cb48'}, {'table_name': 'customers', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/ef1723e2-283c-41dc-bfec-04f35ba275ff'}, {'table_name': 'orders', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/2cd0f7e1-7de2-43f0-b159-c1f0ed51fc8f'}, {'table_name': 'products', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/2360a71f-0670-40ba-bf7f-68d4d7be270f'}, {'table_name': 'stocks', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/febfdde4-e9b4-43ab-81a9-3bb5742bd174'}, {'table_name': 'stores', 'datasource': 'soda-dagster', 'cloud_url': 'https://demo.soda.io/o/424820cc-284b-4ad8-ad62-bb46bbe64a4f/datasets/5a730c9b-b477-4ad3-9c45-526c97aae704'}]

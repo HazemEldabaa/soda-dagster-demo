@@ -1,0 +1,7 @@
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - LOGS_CAPTURED - Started capturing logs in process (pid: 75773).
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - upload_s3 - STEP_START - Started execution of step "upload_s3".
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - upload_s3 - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - upload_s3 - Writing file at: /Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/tmpa2rx4ntd/storage/upload_s3 using PickledObjectFilesystemIOManager...
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - upload_s3 - ASSET_MATERIALIZATION - Materialized value upload_s3.
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - upload_s3 - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-09-16 15:38:36 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 87d7204b-95a0-4c09-b87b-d4ff508f159d - 75773 - upload_s3 - STEP_SUCCESS - Finished execution of step "upload_s3" in 110ms.

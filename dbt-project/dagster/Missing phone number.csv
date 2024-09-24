@@ -1,101 +1,101 @@
 customer_id,first_name,last_name,phone,email,street,city,state,zip_code,failed_check,created_at
-1,Debra,Burks,,debra.burks@yahoo.com,9273 Thorne Ave. ,Orchard Park,NY,14127,Missing phone number,2024-08-16 11:40:04.043539
-2,Kasha,Todd,,kasha.todd@yahoo.com,910 Vine Street ,Campbell,CA,95008,Missing phone number,2024-08-16 11:40:04.043539
-3,Tameka,Fisher,,tameka.fisher@aol.com,769C Honey Creek St. ,Redondo Beach,CA,90278,Missing phone number,2024-08-16 11:40:04.043539
-4,Daryl,Spence,,daryl.spence@aol.com,988 Pearl Lane ,Uniondale,NY,11553,Missing phone number,2024-08-16 11:40:04.043539
-6,Lyndsey,Bean,,lyndsey.bean@hotmail.com,769 West Road ,Fairport,NY,14450,Missing phone number,2024-08-16 11:40:04.043539
-8,Jacquline,Duncan,,jacquline.duncan@yahoo.com,15 Brown St. ,Jackson Heights,NY,11372,Missing phone number,2024-08-16 11:40:04.043539
-9,Genoveva,Baldwin,,genoveva.baldwin@msn.com,8550 Spruce Drive ,Port Washington,NY,11050,Missing phone number,2024-08-16 11:40:04.043539
-10,Pamelia,Newman,,pamelia.newman@gmail.com,476 Chestnut Ave. ,Monroe,NY,10950,Missing phone number,2024-08-16 11:40:04.043539
-11,Deshawn,Mendoza,,deshawn.mendoza@yahoo.com,8790 Cobblestone Street ,Monsey,NY,10952,Missing phone number,2024-08-16 11:40:04.043539
-13,Lashawn,Ortiz,,lashawn.ortiz@msn.com,27 Washington Rd. ,Longview,TX,75604,Missing phone number,2024-08-16 11:40:04.043539
-14,Garry,Espinoza,,garry.espinoza@hotmail.com,7858 Rockaway Court ,Forney,TX,75126,Missing phone number,2024-08-16 11:40:04.043539
-15,Linnie,Branch,,linnie.branch@gmail.com,314 South Columbia Ave. ,Plattsburgh,NY,12901,Missing phone number,2024-08-16 11:40:04.043539
-17,Caren,Stephens,,caren.stephens@msn.com,914 Brook St. ,Scarsdale,NY,10583,Missing phone number,2024-08-16 11:40:04.043539
-18,Georgetta,Hardin,,georgetta.hardin@aol.com,474 Chapel Dr. ,Canandaigua,NY,14424,Missing phone number,2024-08-16 11:40:04.043539
-19,Lizzette,Stein,,lizzette.stein@yahoo.com,19 Green Hill Lane ,Orchard Park,NY,14127,Missing phone number,2024-08-16 11:40:04.043539
-20,Aleta,Shepard,,aleta.shepard@aol.com,684 Howard St. ,Sugar Land,TX,77478,Missing phone number,2024-08-16 11:40:04.043539
-21,Tobie,Little,,tobie.little@gmail.com,10 Silver Spear Dr. ,Victoria,TX,77904,Missing phone number,2024-08-16 11:40:04.043539
-22,Adelle,Larsen,,adelle.larsen@gmail.com,683 West Kirkland Dr. ,East Northport,NY,11731,Missing phone number,2024-08-16 11:40:04.043539
-23,Kaylee,English,,kaylee.english@msn.com,8786 Fulton Rd. ,Hollis,NY,11423,Missing phone number,2024-08-16 11:40:04.043539
-24,Corene,Wall,,corene.wall@msn.com,9601 Ocean Rd. ,Atwater,CA,95301,Missing phone number,2024-08-16 11:40:04.043539
-25,Regenia,Vaughan,,regenia.vaughan@gmail.com,44 Stonybrook Street ,Mahopac,NY,10541,Missing phone number,2024-08-16 11:40:04.043539
-27,Santos,Valencia,,santos.valencia@yahoo.com,7479 Carpenter Street ,Sunnyside,NY,11104,Missing phone number,2024-08-16 11:40:04.043539
-28,Jeanice,Frost,,jeanice.frost@hotmail.com,76 Devon Lane ,Ossining,NY,10562,Missing phone number,2024-08-16 11:40:04.043539
-29,Syreeta,Hendricks,,syreeta.hendricks@msn.com,193 Spruce Road ,Mahopac,NY,10541,Missing phone number,2024-08-16 11:40:04.043539
-30,Jamaal,Albert,,jamaal.albert@gmail.com,853 Stonybrook Street ,Torrance,CA,90505,Missing phone number,2024-08-16 11:40:04.043539
-32,Araceli,Golden,,araceli.golden@msn.com,12 Ridgeview Ave. ,Fullerton,CA,92831,Missing phone number,2024-08-16 11:40:04.043539
-33,Deloris,Burke,,deloris.burke@hotmail.com,895 Edgemont Drive ,Palos Verdes Peninsula,CA,90274,Missing phone number,2024-08-16 11:40:04.043539
-34,Brittney,Woodward,,brittney.woodward@aol.com,960 River St. ,East Northport,NY,11731,Missing phone number,2024-08-16 11:40:04.043539
-35,Guillermina,Noble,,guillermina.noble@msn.com,6 Del Monte Lane ,Baldwinsville,NY,13027,Missing phone number,2024-08-16 11:40:04.043539
-36,Bernita,Mcdaniel,,bernita.mcdaniel@hotmail.com,2 Peg Shop Ave. ,Liverpool,NY,13090,Missing phone number,2024-08-16 11:40:04.043539
-37,Melia,Brady,,melia.brady@gmail.com,907 Shirley Rd. ,Maspeth,NY,11378,Missing phone number,2024-08-16 11:40:04.043539
-38,Zelma,Browning,,zelma.browning@aol.com,296 Second Street ,Astoria,NY,11102,Missing phone number,2024-08-16 11:40:04.043539
-40,Ronna,Butler,,ronna.butler@gmail.com,9438 Plymouth Court ,Encino,CA,91316,Missing phone number,2024-08-16 11:40:04.043539
-41,Kathie,Freeman,,kathie.freeman@msn.com,667 Temple Dr. ,Queensbury,NY,12804,Missing phone number,2024-08-16 11:40:04.043539
-42,Tangela,Quinn,,tangela.quinn@aol.com,4 S. Purple Finch Road ,Richmond Hill,NY,11418,Missing phone number,2024-08-16 11:40:04.043539
-44,Onita,Johns,,onita.johns@msn.com,32 Glen Creek Lane ,Elmont,NY,11003,Missing phone number,2024-08-16 11:40:04.043539
-45,Bennett,Armstrong,,bennett.armstrong@aol.com,688 Walnut Street ,Bethpage,NY,11714,Missing phone number,2024-08-16 11:40:04.043539
-46,Monika,Berg,,monika.berg@gmail.com,369 Vernon Dr. ,Encino,CA,91316,Missing phone number,2024-08-16 11:40:04.043539
-47,Bridgette,Guerra,,bridgette.guerra@hotmail.com,9982 Manor Drive ,San Lorenzo,CA,94580,Missing phone number,2024-08-16 11:40:04.043539
-48,Cesar,Jackson,,cesar.jackson@gmail.com,8068 N. Griffin Ave. ,Liverpool,NY,13090,Missing phone number,2024-08-16 11:40:04.043539
-49,Caroll,Hays,,caroll.hays@yahoo.com,9381 Wrangler St. ,Fairport,NY,14450,Missing phone number,2024-08-16 11:40:04.043539
-50,Cleotilde,Booth,,cleotilde.booth@gmail.com,17 Corona St. ,Sugar Land,TX,77478,Missing phone number,2024-08-16 11:40:04.043539
-51,Gertrud,Rhodes,,gertrud.rhodes@aol.com,9961 Meadowbrook Street ,Merrick,NY,11566,Missing phone number,2024-08-16 11:40:04.043539
-52,Tu,Ramirez,,tu.ramirez@hotmail.com,24 W. Courtland Street ,East Elmhurst,NY,11369,Missing phone number,2024-08-16 11:40:04.043539
-53,Saturnina,Garner,,saturnina.garner@gmail.com,8538 Fairground St. ,Glendora,CA,91740,Missing phone number,2024-08-16 11:40:04.043539
-54,Fran,Yang,,fran.yang@hotmail.com,440 Pearl St. ,Utica,NY,13501,Missing phone number,2024-08-16 11:40:04.043539
-55,Diana,Guerra,,diana.guerra@hotmail.com,45 Chapel Ave. ,Merrick,NY,11566,Missing phone number,2024-08-16 11:40:04.043539
-57,Pamala,Henry,,pamala.henry@aol.com,197 Bridgeton Ave. ,Bronx,NY,10451,Missing phone number,2024-08-16 11:40:04.043539
-58,Damien,Dorsey,,damien.dorsey@yahoo.com,161 Old York Street ,Central Islip,NY,11722,Missing phone number,2024-08-16 11:40:04.043539
-59,Latasha,Stanley,,latasha.stanley@gmail.com,8068 Fordham Drive ,Rockville Centre,NY,11570,Missing phone number,2024-08-16 11:40:04.043539
-60,Neil,Mccall,,neil.mccall@gmail.com,7476 Oakland Dr. ,San Carlos,CA,94070,Missing phone number,2024-08-16 11:40:04.043539
-61,Elinore,Aguilar,,elinore.aguilar@msn.com,9766 Rockcrest Ave. ,San Angelo,TX,76901,Missing phone number,2024-08-16 11:40:04.043539
-62,Alica,Hunter,,alica.hunter@hotmail.com,8 San Juan Drive ,East Elmhurst,NY,11369,Missing phone number,2024-08-16 11:40:04.043539
-63,Tenisha,Lyons,,tenisha.lyons@aol.com,78 E. Rock Creek Street ,Amityville,NY,11701,Missing phone number,2024-08-16 11:40:04.043539
-64,Bobbie,Foster,,bobbie.foster@yahoo.com,988 Pineknoll Ave. ,Desoto,TX,75115,Missing phone number,2024-08-16 11:40:04.043539
-65,Kanesha,Vega,,kanesha.vega@gmail.com,771 E. Oxford Drive ,Rome,NY,13440,Missing phone number,2024-08-16 11:40:04.043539
-66,Lorrie,Becker,,lorrie.becker@yahoo.com,19 North Court ,Garland,TX,75043,Missing phone number,2024-08-16 11:40:04.043539
-68,Jayne,Kirkland,,jayne.kirkland@hotmail.com,7800 Second Lane ,Rowlett,TX,75088,Missing phone number,2024-08-16 11:40:04.043539
-69,Katelin,Kennedy,,katelin.kennedy@gmail.com,286 Myrtle Lane ,Rocklin,CA,95677,Missing phone number,2024-08-16 11:40:04.043539
-70,Tomasa,Carson,,tomasa.carson@aol.com,10 Clark Avenue ,East Elmhurst,NY,11369,Missing phone number,2024-08-16 11:40:04.043539
-71,Takako,Casey,,takako.casey@aol.com,7548 Court Lane ,Bronx,NY,10451,Missing phone number,2024-08-16 11:40:04.043539
-72,Petronila,Norris,,petronila.norris@aol.com,72 South Marshall Lane ,South El Monte,CA,91733,Missing phone number,2024-08-16 11:40:04.043539
-73,Melanie,Hayes,,melanie.hayes@msn.com,5 N. Hall Dr. ,Liverpool,NY,13090,Missing phone number,2024-08-16 11:40:04.043539
-74,Georgeann,Waller,,georgeann.waller@yahoo.com,9797 Bald Hill Ave. ,North Tonawanda,NY,14120,Missing phone number,2024-08-16 11:40:04.043539
-75,Abby,Gamble,,abby.gamble@aol.com,60 Myers Dr. ,Amityville,NY,11701,Missing phone number,2024-08-16 11:40:04.043539
-76,Parker,Prince,,parker.prince@hotmail.com,21 Sulphur Springs Drive ,Port Jefferson Station,NY,11776,Missing phone number,2024-08-16 11:40:04.043539
-77,Keri,Bridges,,keri.bridges@gmail.com,8504 Brickell Ave. ,Richardson,TX,75080,Missing phone number,2024-08-16 11:40:04.043539
-78,Chi,Goff,,chi.goff@aol.com,3 W. Glen Ridge Avenue ,Palos Verdes Peninsula,CA,90274,Missing phone number,2024-08-16 11:40:04.043539
-79,Ashanti,Parks,,ashanti.parks@hotmail.com,846 N. Helen St. ,Baldwin,NY,11510,Missing phone number,2024-08-16 11:40:04.043539
-81,Zina,Bonner,,zina.bonner@hotmail.com,9312 8th Street ,San Lorenzo,CA,94580,Missing phone number,2024-08-16 11:40:04.043539
-82,Lizzie,Joyner,,lizzie.joyner@msn.com,8541 Roberts St. ,Coachella,CA,92236,Missing phone number,2024-08-16 11:40:04.043539
-83,Tiesha,Daniel,,tiesha.daniel@yahoo.com,6 West Bohemia Lane ,Scarsdale,NY,10583,Missing phone number,2024-08-16 11:40:04.043539
-84,Armand,Whitehead,,armand.whitehead@hotmail.com,639 Harvey St. ,Lindenhurst,NY,11757,Missing phone number,2024-08-16 11:40:04.043539
-85,Teofila,Fischer,,teofila.fischer@aol.com,1 West Brickyard St. ,Huntington Station,NY,11746,Missing phone number,2024-08-16 11:40:04.043539
-86,Lissa,Vargas,,lissa.vargas@yahoo.com,517 Victoria Ave. ,Oswego,NY,13126,Missing phone number,2024-08-16 11:40:04.043539
-87,Yan,Mcgowan,,yan.mcgowan@msn.com,8960 Newport Ave. ,Duarte,CA,91010,Missing phone number,2024-08-16 11:40:04.043539
-88,Titus,Bullock,,titus.bullock@gmail.com,29 Oxford Avenue ,Hollis,NY,11423,Missing phone number,2024-08-16 11:40:04.043539
-89,Arvilla,Osborn,,arvilla.osborn@gmail.com,60 Acacia Lane ,Upland,CA,91784,Missing phone number,2024-08-16 11:40:04.043539
-90,Marjorie,Logan,,marjorie.logan@msn.com,95 Grandrose St. ,Franklin Square,NY,11010,Missing phone number,2024-08-16 11:40:04.043539
-92,Tena,Cruz,,tena.cruz@yahoo.com,1 South St. ,Farmingdale,NY,11735,Missing phone number,2024-08-16 11:40:04.043539
-94,Sharyn,Hopkins,,sharyn.hopkins@hotmail.com,4 South Temple Ave. ,Baldwinsville,NY,13027,Missing phone number,2024-08-16 11:40:04.043539
-95,Letitia,Franco,,letitia.franco@aol.com,607 Lakeview Drive ,Saratoga Springs,NY,12866,Missing phone number,2024-08-16 11:40:04.043539
-96,Floretta,Higgins,,floretta.higgins@hotmail.com,870 Lilac Dr. ,Bayside,NY,11361,Missing phone number,2024-08-16 11:40:04.043539
-97,Louanne,Martin,,louanne.martin@hotmail.com,1 Campfire Ave. ,Yuba City,CA,95993,Missing phone number,2024-08-16 11:40:04.043539
-98,Violet,Valenzuela,,violet.valenzuela@msn.com,8668 Piper Street ,Plattsburgh,NY,12901,Missing phone number,2024-08-16 11:40:04.043539
-99,Carie,Kidd,,carie.kidd@yahoo.com,6 East Clinton Street ,Monroe,NY,10950,Missing phone number,2024-08-16 11:40:04.043539
-100,Kellie,Franco,,kellie.franco@yahoo.com,444 South Walnut Rd. ,Commack,NY,11725,Missing phone number,2024-08-16 11:40:04.043539
-101,Nichelle,Howell,,nichelle.howell@aol.com,7670 Forest St. ,Scarsdale,NY,10583,Missing phone number,2024-08-16 11:40:04.043539
-102,Marisol,Goodman,,marisol.goodman@gmail.com,864 East Cherry St. ,Canandaigua,NY,14424,Missing phone number,2024-08-16 11:40:04.043539
-103,Sylvie,Wilkerson,,sylvie.wilkerson@yahoo.com,750 Central Ave. ,Syosset,NY,11791,Missing phone number,2024-08-16 11:40:04.043539
-104,Katharina,Bates,,katharina.bates@gmail.com,54 South Greenview Drive ,Campbell,CA,95008,Missing phone number,2024-08-16 11:40:04.043539
-105,Marget,Hodge,,marget.hodge@msn.com,7199 Selby Lane ,Woodhaven,NY,11421,Missing phone number,2024-08-16 11:40:04.043539
-106,Raul,Melendez,,raul.melendez@hotmail.com,9772 Manhattan St. ,Elmhurst,NY,11373,Missing phone number,2024-08-16 11:40:04.043539
-107,Cecil,Hopper,,cecil.hopper@yahoo.com,471 Glenlake Ave. ,Central Islip,NY,11722,Missing phone number,2024-08-16 11:40:04.043539
-108,Shae,Hickman,,shae.hickman@hotmail.com,740 Pin Oak Street ,Floral Park,NY,11001,Missing phone number,2024-08-16 11:40:04.043539
-111,Shila,White,,shila.white@msn.com,94 Lakeshore Street ,Orchard Park,NY,14127,Missing phone number,2024-08-16 11:40:04.043539
-112,Yuk,Vega,,yuk.vega@yahoo.com,413 Wood St. ,West Hempstead,NY,11552,Missing phone number,2024-08-16 11:40:04.043539
-113,Eliana,Silva,,eliana.silva@gmail.com,7119 Summer Rd. ,Farmingdale,NY,11735,Missing phone number,2024-08-16 11:40:04.043539
-114,Thalia,Horne,,thalia.horne@yahoo.com,9312 Harvard Street ,Amityville,NY,11701,Missing phone number,2024-08-16 11:40:04.043539
-115,Rey,Lindsay,,rey.lindsay@gmail.com,16 Philmont St. ,Monroe,NY,10950,Missing phone number,2024-08-16 11:40:04.043539
+1,Debra,Burks,,debra.burks@yahoo.com,9273 Thorne Ave. ,Orchard Park,NY,14127,Missing phone number,2024-09-24 21:15:40.080742
+2,Kasha,Todd,,kasha.todd@yahoo.com,910 Vine Street ,Campbell,CA,95008,Missing phone number,2024-09-24 21:15:40.080742
+3,Tameka,Fisher,,tameka.fisher@aol.com,769C Honey Creek St. ,Redondo Beach,CA,90278,Missing phone number,2024-09-24 21:15:40.080742
+4,Daryl,Spence,,daryl.spence@aol.com,988 Pearl Lane ,Uniondale,NY,11553,Missing phone number,2024-09-24 21:15:40.080742
+6,Lyndsey,Bean,,lyndsey.bean@hotmail.com,769 West Road ,Fairport,NY,14450,Missing phone number,2024-09-24 21:15:40.080742
+8,Jacquline,Duncan,,jacquline.duncan@yahoo.com,15 Brown St. ,Jackson Heights,NY,11372,Missing phone number,2024-09-24 21:15:40.080742
+9,Genoveva,Baldwin,,genoveva.baldwin@msn.com,8550 Spruce Drive ,Port Washington,NY,11050,Missing phone number,2024-09-24 21:15:40.080742
+10,Pamelia,Newman,,pamelia.newman@gmail.com,476 Chestnut Ave. ,Monroe,NY,10950,Missing phone number,2024-09-24 21:15:40.080742
+11,Deshawn,Mendoza,,deshawn.mendoza@yahoo.com,8790 Cobblestone Street ,Monsey,NY,10952,Missing phone number,2024-09-24 21:15:40.080742
+13,Lashawn,Ortiz,,lashawn.ortiz@msn.com,27 Washington Rd. ,Longview,TX,75604,Missing phone number,2024-09-24 21:15:40.080742
+14,Garry,Espinoza,,garry.espinoza@hotmail.com,7858 Rockaway Court ,Forney,TX,75126,Missing phone number,2024-09-24 21:15:40.080742
+15,Linnie,Branch,,linnie.branch@gmail.com,314 South Columbia Ave. ,Plattsburgh,NY,12901,Missing phone number,2024-09-24 21:15:40.080742
+17,Caren,Stephens,,caren.stephens@msn.com,914 Brook St. ,Scarsdale,NY,10583,Missing phone number,2024-09-24 21:15:40.080742
+18,Georgetta,Hardin,,georgetta.hardin@aol.com,474 Chapel Dr. ,Canandaigua,NY,14424,Missing phone number,2024-09-24 21:15:40.080742
+19,Lizzette,Stein,,lizzette.stein@yahoo.com,19 Green Hill Lane ,Orchard Park,NY,14127,Missing phone number,2024-09-24 21:15:40.080742
+20,Aleta,Shepard,,aleta.shepard@aol.com,684 Howard St. ,Sugar Land,TX,77478,Missing phone number,2024-09-24 21:15:40.080742
+21,Tobie,Little,,tobie.little@gmail.com,10 Silver Spear Dr. ,Victoria,TX,77904,Missing phone number,2024-09-24 21:15:40.080742
+22,Adelle,Larsen,,adelle.larsen@gmail.com,683 West Kirkland Dr. ,East Northport,NY,11731,Missing phone number,2024-09-24 21:15:40.080742
+23,Kaylee,English,,kaylee.english@msn.com,8786 Fulton Rd. ,Hollis,NY,11423,Missing phone number,2024-09-24 21:15:40.080742
+24,Corene,Wall,,corene.wall@msn.com,9601 Ocean Rd. ,Atwater,CA,95301,Missing phone number,2024-09-24 21:15:40.080742
+25,Regenia,Vaughan,,regenia.vaughan@gmail.com,44 Stonybrook Street ,Mahopac,NY,10541,Missing phone number,2024-09-24 21:15:40.080742
+27,Santos,Valencia,,santos.valencia@yahoo.com,7479 Carpenter Street ,Sunnyside,NY,11104,Missing phone number,2024-09-24 21:15:40.080742
+28,Jeanice,Frost,,jeanice.frost@hotmail.com,76 Devon Lane ,Ossining,NY,10562,Missing phone number,2024-09-24 21:15:40.080742
+29,Syreeta,Hendricks,,syreeta.hendricks@msn.com,193 Spruce Road ,Mahopac,NY,10541,Missing phone number,2024-09-24 21:15:40.080742
+30,Jamaal,Albert,,jamaal.albert@gmail.com,853 Stonybrook Street ,Torrance,CA,90505,Missing phone number,2024-09-24 21:15:40.080742
+32,Araceli,Golden,,araceli.golden@msn.com,12 Ridgeview Ave. ,Fullerton,CA,92831,Missing phone number,2024-09-24 21:15:40.080742
+33,Deloris,Burke,,deloris.burke@hotmail.com,895 Edgemont Drive ,Palos Verdes Peninsula,CA,90274,Missing phone number,2024-09-24 21:15:40.080742
+34,Brittney,Woodward,,brittney.woodward@aol.com,960 River St. ,East Northport,NY,11731,Missing phone number,2024-09-24 21:15:40.080742
+35,Guillermina,Noble,,guillermina.noble@msn.com,6 Del Monte Lane ,Baldwinsville,NY,13027,Missing phone number,2024-09-24 21:15:40.080742
+36,Bernita,Mcdaniel,,bernita.mcdaniel@hotmail.com,2 Peg Shop Ave. ,Liverpool,NY,13090,Missing phone number,2024-09-24 21:15:40.080742
+37,Melia,Brady,,melia.brady@gmail.com,907 Shirley Rd. ,Maspeth,NY,11378,Missing phone number,2024-09-24 21:15:40.080742
+38,Zelma,Browning,,zelma.browning@aol.com,296 Second Street ,Astoria,NY,11102,Missing phone number,2024-09-24 21:15:40.080742
+40,Ronna,Butler,,ronna.butler@gmail.com,9438 Plymouth Court ,Encino,CA,91316,Missing phone number,2024-09-24 21:15:40.080742
+41,Kathie,Freeman,,kathie.freeman@msn.com,667 Temple Dr. ,Queensbury,NY,12804,Missing phone number,2024-09-24 21:15:40.080742
+42,Tangela,Quinn,,tangela.quinn@aol.com,4 S. Purple Finch Road ,Richmond Hill,NY,11418,Missing phone number,2024-09-24 21:15:40.080742
+44,Onita,Johns,,onita.johns@msn.com,32 Glen Creek Lane ,Elmont,NY,11003,Missing phone number,2024-09-24 21:15:40.080742
+45,Bennett,Armstrong,,bennett.armstrong@aol.com,688 Walnut Street ,Bethpage,NY,11714,Missing phone number,2024-09-24 21:15:40.080742
+46,Monika,Berg,,monika.berg@gmail.com,369 Vernon Dr. ,Encino,CA,91316,Missing phone number,2024-09-24 21:15:40.080742
+47,Bridgette,Guerra,,bridgette.guerra@hotmail.com,9982 Manor Drive ,San Lorenzo,CA,94580,Missing phone number,2024-09-24 21:15:40.080742
+48,Cesar,Jackson,,cesar.jackson@gmail.com,8068 N. Griffin Ave. ,Liverpool,NY,13090,Missing phone number,2024-09-24 21:15:40.080742
+49,Caroll,Hays,,caroll.hays@yahoo.com,9381 Wrangler St. ,Fairport,NY,14450,Missing phone number,2024-09-24 21:15:40.080742
+50,Cleotilde,Booth,,cleotilde.booth@gmail.com,17 Corona St. ,Sugar Land,TX,77478,Missing phone number,2024-09-24 21:15:40.080742
+51,Gertrud,Rhodes,,gertrud.rhodes@aol.com,9961 Meadowbrook Street ,Merrick,NY,11566,Missing phone number,2024-09-24 21:15:40.080742
+52,Tu,Ramirez,,tu.ramirez@hotmail.com,24 W. Courtland Street ,East Elmhurst,NY,11369,Missing phone number,2024-09-24 21:15:40.080742
+53,Saturnina,Garner,,saturnina.garner@gmail.com,8538 Fairground St. ,Glendora,CA,91740,Missing phone number,2024-09-24 21:15:40.080742
+54,Fran,Yang,,fran.yang@hotmail.com,440 Pearl St. ,Utica,NY,13501,Missing phone number,2024-09-24 21:15:40.080742
+55,Diana,Guerra,,diana.guerra@hotmail.com,45 Chapel Ave. ,Merrick,NY,11566,Missing phone number,2024-09-24 21:15:40.080742
+57,Pamala,Henry,,pamala.henry@aol.com,197 Bridgeton Ave. ,Bronx,NY,10451,Missing phone number,2024-09-24 21:15:40.080742
+58,Damien,Dorsey,,damien.dorsey@yahoo.com,161 Old York Street ,Central Islip,NY,11722,Missing phone number,2024-09-24 21:15:40.080742
+59,Latasha,Stanley,,latasha.stanley@gmail.com,8068 Fordham Drive ,Rockville Centre,NY,11570,Missing phone number,2024-09-24 21:15:40.080742
+60,Neil,Mccall,,neil.mccall@gmail.com,7476 Oakland Dr. ,San Carlos,CA,94070,Missing phone number,2024-09-24 21:15:40.080742
+61,Elinore,Aguilar,,elinore.aguilar@msn.com,9766 Rockcrest Ave. ,San Angelo,TX,76901,Missing phone number,2024-09-24 21:15:40.080742
+62,Alica,Hunter,,alica.hunter@hotmail.com,8 San Juan Drive ,East Elmhurst,NY,11369,Missing phone number,2024-09-24 21:15:40.080742
+63,Tenisha,Lyons,,tenisha.lyons@aol.com,78 E. Rock Creek Street ,Amityville,NY,11701,Missing phone number,2024-09-24 21:15:40.080742
+64,Bobbie,Foster,,bobbie.foster@yahoo.com,988 Pineknoll Ave. ,Desoto,TX,75115,Missing phone number,2024-09-24 21:15:40.080742
+65,Kanesha,Vega,,kanesha.vega@gmail.com,771 E. Oxford Drive ,Rome,NY,13440,Missing phone number,2024-09-24 21:15:40.080742
+66,Lorrie,Becker,,lorrie.becker@yahoo.com,19 North Court ,Garland,TX,75043,Missing phone number,2024-09-24 21:15:40.080742
+68,Jayne,Kirkland,,jayne.kirkland@hotmail.com,7800 Second Lane ,Rowlett,TX,75088,Missing phone number,2024-09-24 21:15:40.080742
+69,Katelin,Kennedy,,katelin.kennedy@gmail.com,286 Myrtle Lane ,Rocklin,CA,95677,Missing phone number,2024-09-24 21:15:40.080742
+70,Tomasa,Carson,,tomasa.carson@aol.com,10 Clark Avenue ,East Elmhurst,NY,11369,Missing phone number,2024-09-24 21:15:40.080742
+71,Takako,Casey,,takako.casey@aol.com,7548 Court Lane ,Bronx,NY,10451,Missing phone number,2024-09-24 21:15:40.080742
+72,Petronila,Norris,,petronila.norris@aol.com,72 South Marshall Lane ,South El Monte,CA,91733,Missing phone number,2024-09-24 21:15:40.080742
+73,Melanie,Hayes,,melanie.hayes@msn.com,5 N. Hall Dr. ,Liverpool,NY,13090,Missing phone number,2024-09-24 21:15:40.080742
+74,Georgeann,Waller,,georgeann.waller@yahoo.com,9797 Bald Hill Ave. ,North Tonawanda,NY,14120,Missing phone number,2024-09-24 21:15:40.080742
+75,Abby,Gamble,,abby.gamble@aol.com,60 Myers Dr. ,Amityville,NY,11701,Missing phone number,2024-09-24 21:15:40.080742
+76,Parker,Prince,,parker.prince@hotmail.com,21 Sulphur Springs Drive ,Port Jefferson Station,NY,11776,Missing phone number,2024-09-24 21:15:40.080742
+77,Keri,Bridges,,keri.bridges@gmail.com,8504 Brickell Ave. ,Richardson,TX,75080,Missing phone number,2024-09-24 21:15:40.080742
+78,Chi,Goff,,chi.goff@aol.com,3 W. Glen Ridge Avenue ,Palos Verdes Peninsula,CA,90274,Missing phone number,2024-09-24 21:15:40.080742
+79,Ashanti,Parks,,ashanti.parks@hotmail.com,846 N. Helen St. ,Baldwin,NY,11510,Missing phone number,2024-09-24 21:15:40.080742
+81,Zina,Bonner,,zina.bonner@hotmail.com,9312 8th Street ,San Lorenzo,CA,94580,Missing phone number,2024-09-24 21:15:40.080742
+82,Lizzie,Joyner,,lizzie.joyner@msn.com,8541 Roberts St. ,Coachella,CA,92236,Missing phone number,2024-09-24 21:15:40.080742
+83,Tiesha,Daniel,,tiesha.daniel@yahoo.com,6 West Bohemia Lane ,Scarsdale,NY,10583,Missing phone number,2024-09-24 21:15:40.080742
+84,Armand,Whitehead,,armand.whitehead@hotmail.com,639 Harvey St. ,Lindenhurst,NY,11757,Missing phone number,2024-09-24 21:15:40.080742
+85,Teofila,Fischer,,teofila.fischer@aol.com,1 West Brickyard St. ,Huntington Station,NY,11746,Missing phone number,2024-09-24 21:15:40.080742
+86,Lissa,Vargas,,lissa.vargas@yahoo.com,517 Victoria Ave. ,Oswego,NY,13126,Missing phone number,2024-09-24 21:15:40.080742
+87,Yan,Mcgowan,,yan.mcgowan@msn.com,8960 Newport Ave. ,Duarte,CA,91010,Missing phone number,2024-09-24 21:15:40.080742
+88,Titus,Bullock,,titus.bullock@gmail.com,29 Oxford Avenue ,Hollis,NY,11423,Missing phone number,2024-09-24 21:15:40.080742
+89,Arvilla,Osborn,,arvilla.osborn@gmail.com,60 Acacia Lane ,Upland,CA,91784,Missing phone number,2024-09-24 21:15:40.080742
+90,Marjorie,Logan,,marjorie.logan@msn.com,95 Grandrose St. ,Franklin Square,NY,11010,Missing phone number,2024-09-24 21:15:40.080742
+92,Tena,Cruz,,tena.cruz@yahoo.com,1 South St. ,Farmingdale,NY,11735,Missing phone number,2024-09-24 21:15:40.080742
+94,Sharyn,Hopkins,,sharyn.hopkins@hotmail.com,4 South Temple Ave. ,Baldwinsville,NY,13027,Missing phone number,2024-09-24 21:15:40.080742
+95,Letitia,Franco,,letitia.franco@aol.com,607 Lakeview Drive ,Saratoga Springs,NY,12866,Missing phone number,2024-09-24 21:15:40.080742
+96,Floretta,Higgins,,floretta.higgins@hotmail.com,870 Lilac Dr. ,Bayside,NY,11361,Missing phone number,2024-09-24 21:15:40.080742
+97,Louanne,Martin,,louanne.martin@hotmail.com,1 Campfire Ave. ,Yuba City,CA,95993,Missing phone number,2024-09-24 21:15:40.080742
+98,Violet,Valenzuela,,violet.valenzuela@msn.com,8668 Piper Street ,Plattsburgh,NY,12901,Missing phone number,2024-09-24 21:15:40.080742
+99,Carie,Kidd,,carie.kidd@yahoo.com,6 East Clinton Street ,Monroe,NY,10950,Missing phone number,2024-09-24 21:15:40.080742
+100,Kellie,Franco,,kellie.franco@yahoo.com,444 South Walnut Rd. ,Commack,NY,11725,Missing phone number,2024-09-24 21:15:40.080742
+101,Nichelle,Howell,,nichelle.howell@aol.com,7670 Forest St. ,Scarsdale,NY,10583,Missing phone number,2024-09-24 21:15:40.080742
+102,Marisol,Goodman,,marisol.goodman@gmail.com,864 East Cherry St. ,Canandaigua,NY,14424,Missing phone number,2024-09-24 21:15:40.080742
+103,Sylvie,Wilkerson,,sylvie.wilkerson@yahoo.com,750 Central Ave. ,Syosset,NY,11791,Missing phone number,2024-09-24 21:15:40.080742
+104,Katharina,Bates,,katharina.bates@gmail.com,54 South Greenview Drive ,Campbell,CA,95008,Missing phone number,2024-09-24 21:15:40.080742
+105,Marget,Hodge,,marget.hodge@msn.com,7199 Selby Lane ,Woodhaven,NY,11421,Missing phone number,2024-09-24 21:15:40.080742
+106,Raul,Melendez,,raul.melendez@hotmail.com,9772 Manhattan St. ,Elmhurst,NY,11373,Missing phone number,2024-09-24 21:15:40.080742
+107,Cecil,Hopper,,cecil.hopper@yahoo.com,471 Glenlake Ave. ,Central Islip,NY,11722,Missing phone number,2024-09-24 21:15:40.080742
+108,Shae,Hickman,,shae.hickman@hotmail.com,740 Pin Oak Street ,Floral Park,NY,11001,Missing phone number,2024-09-24 21:15:40.080742
+111,Shila,White,,shila.white@msn.com,94 Lakeshore Street ,Orchard Park,NY,14127,Missing phone number,2024-09-24 21:15:40.080742
+112,Yuk,Vega,,yuk.vega@yahoo.com,413 Wood St. ,West Hempstead,NY,11552,Missing phone number,2024-09-24 21:15:40.080742
+113,Eliana,Silva,,eliana.silva@gmail.com,7119 Summer Rd. ,Farmingdale,NY,11735,Missing phone number,2024-09-24 21:15:40.080742
+114,Thalia,Horne,,thalia.horne@yahoo.com,9312 Harvard Street ,Amityville,NY,11701,Missing phone number,2024-09-24 21:15:40.080742
+115,Rey,Lindsay,,rey.lindsay@gmail.com,16 Philmont St. ,Monroe,NY,10950,Missing phone number,2024-09-24 21:15:40.080742

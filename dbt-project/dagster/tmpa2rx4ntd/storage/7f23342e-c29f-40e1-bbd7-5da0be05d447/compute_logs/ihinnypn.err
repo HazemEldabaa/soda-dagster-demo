@@ -1,0 +1,27 @@
+[32m2024-09-17 16:59:08 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - LOGS_CAPTURED - Started capturing logs in process (pid: 95720).
+[32m2024-09-17 16:59:08 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - load_from_s3 - STEP_START - Started execution of step "load_from_s3".
+[32m2024-09-17 16:59:10 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/brands.csv to demo.brands
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.brands
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/categories.csv to demo.categories
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.categories
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/customers.csv to demo.customers
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.customers
+[32m2024-09-17 16:59:11 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/order_items.csv to demo.order_items
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.order_items
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/orders.csv to demo.orders
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.orders
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/products.csv to demo.products
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.products
+[32m2024-09-17 16:59:12 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/staffs.csv to demo.staffs
+[32m2024-09-17 16:59:13 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.staffs
+[32m2024-09-17 16:59:13 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/stocks.csv to demo.stocks
+[32m2024-09-17 16:59:13 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.stocks
+[32m2024-09-17 16:59:13 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Copying data from s3://soda-dagster/bikes/stores.csv to demo.stores
+[32m2024-09-17 16:59:14 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data copied successfully to demo.stores
+[32m2024-09-17 16:59:14 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - All data copied successfully
+[32m2024-09-17 16:59:14 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Data loaded successfully.
+[32m2024-09-17 16:59:14 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - load_from_s3 - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2024-09-17 16:59:14 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - load_from_s3 - Writing file at: /Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/tmpa2rx4ntd/storage/load_from_s3 using PickledObjectFilesystemIOManager...
+[32m2024-09-17 16:59:15 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - load_from_s3 - ASSET_MATERIALIZATION - Materialized value load_from_s3.
+[32m2024-09-17 16:59:15 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - load_from_s3 - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2024-09-17 16:59:15 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 7f23342e-c29f-40e1-bbd7-5da0be05d447 - 95720 - load_from_s3 - STEP_SUCCESS - Finished execution of step "load_from_s3" in 6.27s.

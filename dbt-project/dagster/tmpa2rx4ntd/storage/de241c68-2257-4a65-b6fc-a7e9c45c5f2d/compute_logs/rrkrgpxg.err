@@ -1,0 +1,41 @@
+[32m2024-09-17 12:07:37 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - 82746 - LOGS_CAPTURED - Started capturing logs in process (pid: 82746).
+[32m2024-09-17 12:07:37 +0200[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - 82746 - dbt_prod - STEP_START - Started execution of step "dbt_prod".
+[32m2024-09-17 12:07:38 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - dbt_prod - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'prod']`.
+[32m2024-09-17 12:07:38 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - dbt_prod - Copying `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/target/partial_parse.msgpack` to `/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/target/dbt_prod-de241c6-3f6cf8e/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2024-09-17 12:07:38 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - dbt_prod - Running dbt command: `dbt build --select prod`.
+[32m2024-09-17 12:07:48 +0200[0m - dagster - [34mINFO[0m - __ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - dbt_prod - Forwarding interrupt signal to dbt command: `dbt build --select prod`.
+[32m2024-09-17 12:07:50 +0200[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - de241c68-2257-4a65-b6fc-a7e9c45c5f2d - 82746 - dbt_prod - STEP_FAILURE - Execution of step "dbt_prod" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "dbt_prod"::
+
+subprocess.TimeoutExpired: Command '['dbt', 'build', '--select', 'prod']' timed out after 2 seconds
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/dbt-project/dagster/pipeline/assets.py", line 579, in dbt_prod
+    yield from dbt.cli(["build"], context=context, manifest=dagsteretl_project.manifest_path).stream()
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_event_iterator.py", line 203, in __next__
+    return next(self._inner_iterator)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 269, in _stream_asset_events
+    for event in self.stream_raw_events():
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 322, in stream_raw_events
+    for raw_event in self._stdout or self._stream_stdout():
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 430, in _stream_stdout
+    self.process.wait(timeout=self.termination_timeout_seconds)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1909, in _wait
+    raise TimeoutExpired(self.args, timeout)
+
+The above exception occurred during handling of the following exception:
+dagster._core.errors.DagsterExecutionInterruptedError
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster_dbt/core/dbt_cli_invocation.py", line 412, in _stream_stdout
+    for raw_line in self.process.stdout or []:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_utils/interrupts.py", line 82, in _new_signal_handler
+    raise error_cls()
+[0m

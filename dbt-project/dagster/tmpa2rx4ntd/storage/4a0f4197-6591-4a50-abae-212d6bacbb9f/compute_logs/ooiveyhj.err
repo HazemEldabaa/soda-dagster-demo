@@ -1,0 +1,16 @@
+[32m2024-09-17 16:32:26 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 4a0f4197-6591-4a50-abae-212d6bacbb9f - 93501 - LOGS_CAPTURED - Started capturing logs in process (pid: 93501).
+[32m2024-09-17 16:32:26 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 4a0f4197-6591-4a50-abae-212d6bacbb9f - 93501 - staging__t_sales_summary_soda_UI_check - STEP_START - Started execution of step "staging__t_sales_summary_soda_UI_check".
+[32m2024-09-17 16:32:26 +0200[0m - dagster - [34mERROR[0m - [31mstaging_pipeline - 4a0f4197-6591-4a50-abae-212d6bacbb9f - 93501 - staging__t_sales_summary_soda_UI_check - STEP_FAILURE - Execution of step "staging__t_sales_summary_soda_UI_check" failed.
+
+dagster._core.errors.DagsterInvalidDefinitionError: Cannot annotate @asset_check `context` parameter with type AssetExecutionContext. `context` must be annotated with AssetCheckExecutionContext, OpExecutionContext, or left blank.
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 445, in core_dagster_event_sequence_for_step
+    with time_execution_scope() as timer_result, enter_execution_context(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/contextlib.py", line 117, in __enter__
+    return next(self.gen)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/context/compute.py", line 1995, in enter_execution_context
+    raise DagsterInvalidDefinitionError(
+[0m

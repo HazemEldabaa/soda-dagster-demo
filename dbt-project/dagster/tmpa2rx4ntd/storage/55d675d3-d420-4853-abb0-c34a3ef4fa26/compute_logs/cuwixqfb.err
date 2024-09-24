@@ -1,0 +1,24 @@
+[32m2024-09-17 17:00:54 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 55d675d3-d420-4853-abb0-c34a3ef4fa26 - 95931 - LOGS_CAPTURED - Started capturing logs in process (pid: 95931).
+[32m2024-09-17 17:00:54 +0200[0m - dagster - [34mDEBUG[0m - staging_pipeline - 55d675d3-d420-4853-abb0-c34a3ef4fa26 - 95931 - soda_UI_check - STEP_START - Started execution of step "soda_UI_check".
+[32m2024-09-17 17:00:55 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 55d675d3-d420-4853-abb0-c34a3ef4fa26 - soda_UI_check - Request successful
+[32m2024-09-17 17:01:05 +0200[0m - dagster - [34mINFO[0m - staging_pipeline - 55d675d3-d420-4853-abb0-c34a3ef4fa26 - soda_UI_check - Scan failed with status: completedWithErrors
+[32m2024-09-17 17:01:05 +0200[0m - dagster - [34mERROR[0m - [31mstaging_pipeline - 55d675d3-d420-4853-abb0-c34a3ef4fa26 - 95931 - soda_UI_check - STEP_FAILURE - Execution of step "soda_UI_check" failed.
+
+dagster._core.errors.DagsterInvariantViolationError: Compute function for op "soda_UI_check" yielded a value of type <class 'list'> rather than an instance of Output, AssetMaterialization, or ExpectationResult. Values yielded by ops must be wrapped in one of these types. If your op has a single output and yields no other events, you may want to use `return` instead of `yield` in the body of your op compute function. If you are already using `return`, and you expected to return a value of type <class 'list'>, you may be inadvertently returning a generator rather than the value 
+
+Stack Trace:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 180, in _yield_compute_results
+    yield _validate_event(event, step_context)
+  File "/Users/hazem/Documents/Soda/GitHub/soda-dagster-demo/.venv/lib/python3.9/site-packages/dagster/_core/execution/plan/compute.py", line 112, in _validate_event
+    raise DagsterInvariantViolationError(
+[0m

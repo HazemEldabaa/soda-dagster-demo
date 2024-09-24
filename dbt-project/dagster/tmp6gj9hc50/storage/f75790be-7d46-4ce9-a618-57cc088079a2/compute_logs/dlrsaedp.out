@@ -1,0 +1,41 @@
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+loaded
+Processing logs:
+ INFO   | Soda Library 1.6.1
+INFO   | Soda Core 3.0.47
+INFO   | By downloading and using Soda Library, you agree to Soda's Terms & Conditions (https://go.soda.io/t&c) and Privacy Policy (https://go.soda.io/privacy). 
+INFO   | Scan summary:
+INFO   | 12/14 checks PASSED: 
+INFO   |     brands in soda-dagster
+INFO   |       Invalid row count for brands [PASSED]
+INFO   |       Brand must have ID [PASSED]
+INFO   |       Unique brand [PASSED]
+INFO   |     stores in soda-dagster
+INFO   |       Invalid row count for stores [PASSED]
+INFO   |       Store must have ID [PASSED]
+INFO   |       Email validity [PASSED]
+INFO   |       Phone number validity [PASSED]
+INFO   |     stocks in soda-dagster
+INFO   |       Row count for stocks [PASSED]
+INFO   |       Cross check Store ID [PASSED]
+INFO   |       Cross check Product ID [PASSED]
+INFO   |       No negative quantities [PASSED]
+INFO   |     products in soda-dagster
+INFO   |       Row count for products [PASSED]
+INFO   | 2/14 checks FAILED: 
+INFO   |     customers in soda-dagster
+INFO   |       Missing phone number [FAILED]
+INFO   |         check_value: 1267
+INFO   |     orders in soda-dagster
+INFO   |       Shipment Late [FAILED]
+INFO   |         value: 482
+INFO   | Oops! 2 failures. 0 warnings. 0 errors. 12 pass.
+INFO   | Sending results to Soda Cloud
+INFO   | Soda Cloud Trace: 2527020570569195732
