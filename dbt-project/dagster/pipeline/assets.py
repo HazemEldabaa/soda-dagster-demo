@@ -1,113 +1,132 @@
-from dagster import AssetExecutionContext
-from dagster_dbt import DbtCliResource, dbt_assets, get_asset_key_for_source, get_asset_keys_by_output_name_for_source
-from .project import dagsteretl_project
-from io import StringIO
-import yaml
-from .export_cloudurl import get_urls
-import boto3
-import pandas as pd
-from dagster import asset, asset_check, materialize, Output, Definitions, get_dagster_logger, job, MetadataValue, Failure, AssetExecutionContext, AssetCheckResult, AssetCheckSpec, AssetKey, multi_asset_check, AssetMaterialization
-from dagster_aws.s3 import S3Resource
-from soda.sampler.sampler import Sampler
-from soda.sampler.sample_context import SampleContext
-import psycopg2
-from psycopg2 import sql
-from soda.scan import Scan
-from dotenv import load_dotenv
 import base64
-import subprocess
+import datetime
+import json
 import os
 import re
-import requests
-import json
+import subprocess
+import sys
 import time
-import datetime
-import s3fs
 from datetime import datetime
+from io import StringIO
+
+import boto3
+import pandas as pd
+import psycopg2
+import requests
+import s3fs
+import yaml
+from dagster import (
+    AssetCheckResult,
+    AssetCheckSpec,
+    AssetExecutionContext,
+    AssetKey,
+    AssetMaterialization,
+    Definitions,
+    Failure,
+    MetadataValue,
+    Output,
+    asset,
+    asset_check,
+    get_dagster_logger,
+    job,
+    materialize,
+    multi_asset_check,
+)
+from dagster_aws.s3 import S3Resource
+from dagster_dbt import (
+    DbtCliResource,
+    dbt_assets,
+    get_asset_key_for_source,
+    get_asset_keys_by_output_name_for_source,
+)
+from dotenv import load_dotenv
+from pipeline.utils import checks_api, get_ids, read_s3
+from psycopg2 import sql
+from soda.sampler.sample_context import SampleContext
+from soda.sampler.sample_ref import SampleRef
+from soda.sampler.sampler import Sampler
+from soda.scan import Scan
 from sqlalchemy import create_engine
-from dagster import AssetExecutionContext
-from dagster_dbt import DbtCliResource, dbt_assets
 
+from .export_cloudurl import get_urls
+from .project import dagsteretl_project
 
-
-
-    
 load_dotenv()
-connection_string = 'postgresql+psycopg2://username:password@localhost/mydatabase'
+connection_string = "postgresql+psycopg2://username:password@localhost/mydatabase"
+dataset_names = ["order_items", "orders", "products"]
+load_from_s3_ids = [
+    "112e62b7-6571-403c-89c8-69b4ffa7e83e",
+    "0cdc7648-3e1e-40cf-9f6a-3db06add0027",
+    "fcafc3cf-c206-4496-98b1-c7c21ff23611",
+]
 
 # S3 config
-BUCKET_NAME = 'soda-dagster'
+BUCKET_NAME = "soda-dagster"
 FILE_KEYS = [
-    'bikes/brands.csv',
-    'bikes/categories.csv',
-    'bikes/customers.csv',
-    'bikes/order_items.csv',
-    'bikes/orders.csv',
-    'bikes/products.csv',
-    'bikes/staffs.csv',
-    'bikes/stocks.csv',
-    'bikes/stores.csv'
+    "bikes/order_items.csv",
+    "bikes/orders.csv",
+    "bikes/products.csv",
 ]
-#FILE_KEYS = ['retail_products.csv']
+# FILE_KEYS = ['retail_products.csv']
 
 NAMES = [
-    'brands.csv',
-    'categories.csv',
-    'customers.csv',
-    'order_items.csv',
-    'orders.csv',
-    'products.csv',
-    'staffs.csv',
-    'stocks.csv',
-    'stores.csv'
+    "brands.csv",
+    "categories.csv",
+    "customers.csv",
+    "order_items.csv",
+    "orders.csv",
+    "products.csv",
+    "staffs.csv",
+    "stocks.csv",
+    "stores.csv",
 ]
 
 # AWS and Redshift credentials
-AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY')
-AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
-REDSHIFT_USER = os.getenv('redshift_user')
-REDSHIFT_PASSWORD = os.getenv('redshift_password')
-REDSHIFT_HOST = os.getenv('redshift_host')
-REDSHIFT_PORT = os.getenv('redshift_port')
-REDSHIFT_DB = os.getenv('redshift_db')
-IAM_ROLE = os.getenv('redshift_iam')
-REGION = os.getenv('region')
-SCHEMA = os.getenv('schema')
-DEFAULT_DELIMITER = ','  # Default delimiter is comma
+AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+REDSHIFT_USER = os.getenv("redshift_user")
+REDSHIFT_PASSWORD = os.getenv("redshift_password")
+REDSHIFT_HOST = os.getenv("redshift_host")
+REDSHIFT_PORT = os.getenv("redshift_port")
+REDSHIFT_DB = os.getenv("redshift_db")
+IAM_ROLE = os.getenv("redshift_iam")
+REGION = os.getenv("region")
+SCHEMA = os.getenv("schema")
+DEFAULT_DELIMITER = ","  # Default delimiter is comma
 
-connection_string = f'postgresql+psycopg2://{REDSHIFT_USER}:{REDSHIFT_PASSWORD}@{REDSHIFT_HOST}/{REDSHIFT_DB}'
+connection_string = f"postgresql+psycopg2://{REDSHIFT_USER}:{REDSHIFT_PASSWORD}@{REDSHIFT_HOST}/{REDSHIFT_DB}"
 engine = create_engine(connection_string)
 
 # S3 bucket and file details
-S3_BUCKET = 'soda-dagster'
+S3_BUCKET = "soda-dagster"
 FILE_PATHS = {
-    'brands': 'bikes/brands.csv',
-    'categories': 'bikes/categories.csv',
-    'customers': 'bikes/customers.csv',
-    'order_items': 'bikes/order_items.csv',
-    'orders': 'bikes/orders.csv',
-    'products': 'bikes/products.csv',
-    'staffs': 'bikes/staffs.csv',
-    'stocks': 'bikes/stocks.csv',
-    'stores': 'bikes/stores.csv'
+    "brands": "bikes/brands.csv",
+    "categories": "bikes/categories.csv",
+    "customers": "bikes/customers.csv",
+    "order_items": "bikes/order_items.csv",
+    "orders": "bikes/orders.csv",
+    "products": "bikes/products.csv",
+    "staffs": "bikes/staffs.csv",
+    "stocks": "bikes/stocks.csv",
+    "stores": "bikes/stores.csv",
 }
 
 
 # Table creation queries
 TABLE_QUERIES = {
-    'brands': f"""
+    "brands": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.brands (
         brand_id INT PRIMARY KEY,
         brand_name TEXT
     );
     """,
-    'categories': f"""
+    "categories": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.categories (
         category_id INT PRIMARY KEY,
         category_name TEXT
     );
     """,
-    'customers': f"""
+    "customers": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.customers (
         customer_id INT PRIMARY KEY,
         first_name TEXT,
@@ -120,7 +139,7 @@ TABLE_QUERIES = {
         zip_code VARCHAR
     );
     """,
-    'order_items': f"""
+    "order_items": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.order_items (
         order_item_id INT PRIMARY KEY,
         order_id INT,
@@ -130,7 +149,7 @@ TABLE_QUERIES = {
         discount DECIMAL
     );
     """,
-    'orders': f"""
+    "orders": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.orders (
         order_id INT PRIMARY KEY,
         customer_id INT,
@@ -142,7 +161,7 @@ TABLE_QUERIES = {
         staff_id INT
     );
     """,
-    'products': f"""
+    "products": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.products (
         product_id INT PRIMARY KEY,
         product_name TEXT,
@@ -152,7 +171,7 @@ TABLE_QUERIES = {
         list_price DECIMAL
     );
     """,
-    'staffs': f"""
+    "staffs": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.staffs (
         staff_id INT PRIMARY KEY,
         first_name TEXT,
@@ -164,7 +183,7 @@ TABLE_QUERIES = {
         manager_id INT
     );
     """,
-    'stocks': f"""
+    "stocks": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.stocks (
         store_id INT,
         product_id INT,
@@ -172,7 +191,7 @@ TABLE_QUERIES = {
         PRIMARY KEY (store_id, product_id)
     );
     """,
-    'stores': f"""
+    "stores": f"""
     CREATE TABLE IF NOT EXISTS {SCHEMA}.stores (
         store_id INT PRIMARY KEY,
         store_name TEXT,
@@ -183,9 +202,9 @@ TABLE_QUERIES = {
         state TEXT,
         zip_code VARCHAR
     );
-    """
+    """,
 }
-checks = '''
+checks = """
 
 checks for brands:
   - row_count > 0:
@@ -215,7 +234,7 @@ checks for brands:
 
 checks for stores:
   - row_count > 0:
-      name: Invalid row count
+      name: Invalid row count for stores
       attributes:
         pipeline_stage: Pre-ingestion
         data_quality_dimension:
@@ -253,7 +272,7 @@ checks for stores:
 
 checks for stocks:
   - row_count > 0:
-      name: Row count
+      name: Row count for stocks
       attributes:
         pipeline_stage: Pre-ingestion
         data_quality_dimension:
@@ -288,7 +307,7 @@ checks for stocks:
 
 checks for products:
   - row_count > 0:
-      name: Row count
+      name: Row count for products
       attributes:
         pipeline_stage: Pre-ingestion
         data_quality_dimension:
@@ -337,81 +356,21 @@ checks for orders:
             - Timeliness
             data_domain: Transaction
             weight: 3
-        '''
-def parse_checks_from_yaml(yaml_str):
-    checks_dict = yaml.safe_load(yaml_str)
-    
-    # Create a list to hold all the dynamically created check specs
-    check_specs = []
-    
-    # Helper function to clean names by replacing invalid characters with underscores
-    def clean_name(name):
-        return re.sub(r'\W+', '_', name)  # Replace non-alphanumeric characters with underscores
-    
-    # Iterate over the parsed YAML, for each dataset (e.g., 'brands', 'stores')
-    for dataset_name, checks in checks_dict.items():
-        asset_name = 'ingestion'
-        
-        # Iterate over the checks for the dataset and create AssetCheckSpec for each
-        for check in checks:
-            check_condition = list(check.keys())[0]
-            
-            # Check if the 'name' key exists before trying to access it
-            if 'name' in check[check_condition]:
-                check_name = check[check_condition]['name']
-                
-                # Clean up the check name to meet Dagster's naming requirements
-                check_name = clean_name(f"{asset_name}_{check_name} for {dataset_name}")
-                
-                # Dynamically create an AssetCheckSpec for each check and assign it to 'ingestion'
-                check_specs.append(AssetCheckSpec(name=check_name, asset=asset_name))
-            else:
-                print(f"Skipping check with no 'name' field: {check_condition}")
-    
-    return check_specs
+        """
+dataset_names = ["customers", "order_items", "orders", "products"]
 
 
+ingestion_ids = [
+    "48724ca5-26ff-49c4-9881-ee57c153cb48",
+    "ef1723e2-283c-41dc-bfec-04f35ba275ff",
+    "2cd0f7e1-7de2-43f0-b159-c1f0ed51fc8f",
+    "2360a71f-0670-40ba-bf7f-68d4d7be270f",
+]
+specs, result = checks_api(ingestion_ids, ingestion=True)
 
-
-def evaluate_checks_from_log(logs, check_specs):
-    """Parse logs to evaluate whether each check passed or failed."""
-    results = {}
-    
-    for spec in check_specs:
-        check_name = spec.name
-
-        # Escaping any special characters in the check name for regex safety
-        check_name_escaped = re.escape(check_name)
-
-        # Using regex to search for check results in logs
-        passed_pattern = re.compile(rf"{check_name_escaped}\s*\[\s*PASSED\s*\]", re.IGNORECASE)
-        failed_pattern = re.compile(rf"{check_name_escaped}\s*\[\s*FAILED\s*\]", re.IGNORECASE)
-        
-        if passed_pattern.search(logs):
-            results[check_name] = True
-        elif failed_pattern.search(logs):
-            results[check_name] = False
-        else:
-            results[check_name] = False  # If result not found in logs, default to False
-    
-    return results
-# def evaluate_checks_from_log(log_data):
-#     # Extract total and passed checks from log_data (example structure)
-#     passed_checks = log_data.count("PASSED")  # Count how many checks passed
-#     failed_checks = log_data.count("FAILED")  # Count how many checks failed
-#     total_checks = passed_checks + failed_checks
-    
-    # Return 1 if all checks passed, 0 otherwise
-    return 1 if failed_checks == 0 else 0
-# Function to parse table names from the 'checks' string
-def parse_table_names(checks_str):
-
-    # Use regular expression to find all table names after 'checks for'
-    return re.findall(r'checks for (\w+):', checks_str)
 
 # Function to find cloud URLs for the parsed table names in the provided JSON data
 def find_cloud_url(table_names, json_data):
-
     table_cloud_urls = {}
     for table in table_names:
         for item in json_data["content"]:
@@ -419,15 +378,18 @@ def find_cloud_url(table_names, json_data):
                 table_cloud_urls[table] = item["cloudUrl"]
                 break
     return table_cloud_urls
+
+
 def create_redshift_connection():
     conn = psycopg2.connect(
         dbname=REDSHIFT_DB,
         user=REDSHIFT_USER,
         password=REDSHIFT_PASSWORD,
         host=REDSHIFT_HOST,
-        port=REDSHIFT_PORT
+        port=REDSHIFT_PORT,
     )
     return conn
+
 
 def create_tables(conn):
     with conn.cursor() as cur:
@@ -435,12 +397,16 @@ def create_tables(conn):
             cur.execute(query)
     conn.commit()
 
+
 def copy_data_from_s3(conn):
     with conn.cursor() as cur:
         for table, file_path in FILE_PATHS.items():
-            s3_path = f's3://{BUCKET_NAME}/{file_path}'
-            get_dagster_logger().info(f"Copying data from {s3_path} to {SCHEMA}.{table}")
-            copy_query = sql.SQL("""
+            s3_path = f"s3://{BUCKET_NAME}/{file_path}"
+            get_dagster_logger().info(
+                f"Copying data from {s3_path} to {SCHEMA}.{table}"
+            )
+            copy_query = sql.SQL(
+                """
                 COPY {schema}.{table}
                 FROM %s
                 IAM_ROLE %s
@@ -450,19 +416,22 @@ def copy_data_from_s3(conn):
                 DATEFORMAT 'auto'
                 NULL AS 'NULL'
                 REGION %s;
-            """).format(
-                schema=sql.Identifier(SCHEMA),
-                table=sql.Identifier(table)
-            )
+            """
+            ).format(schema=sql.Identifier(SCHEMA), table=sql.Identifier(table))
             try:
                 cur.execute(copy_query, (s3_path, IAM_ROLE, REGION))
-                get_dagster_logger().info(f"Data copied successfully to {SCHEMA}.{table}")
+                get_dagster_logger().info(
+                    f"Data copied successfully to {SCHEMA}.{table}"
+                )
             except Exception as e:
-                get_dagster_logger().error(f"Error copying data to {SCHEMA}.{table}: {e}")
+                get_dagster_logger().error(
+                    f"Error copying data to {SCHEMA}.{table}: {e}"
+                )
                 conn.rollback()
                 raise e
     conn.commit()
     get_dagster_logger().info("All data copied successfully")
+
 
 def copy_data():
     conn = create_redshift_connection()
@@ -477,78 +446,83 @@ def copy_data():
 
 
 # URL to make the POST request to
-url = 'https://demo.soda.io/api/v1/scans'
-api_key_id = os.getenv('soda_api_key_id')
-api_key_secret = os.getenv('soda_api_key_secret')
+url = "https://demo.soda.io/api/v1/scans"
+api_key_id = os.getenv("soda_api_key_id")
+api_key_secret = os.getenv("soda_api_key_secret")
 credentials = f"{api_key_id}:{api_key_secret}"
-encoded_credentials = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
-print(credentials)
-print(encoded_credentials)
-# Headers, including the authorization token 
+encoded_credentials = base64.b64encode(credentials.encode("utf-8")).decode("utf-8")
+
+# Headers, including the authorization token
 headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Authorization': f'Basic {encoded_credentials}'
+    "Accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Authorization": f"Basic {encoded_credentials}",
 }
 
 # Data for the POST request
-payload = {
+payload = {"scanDefinition": "dagsterredshift_default_scan"}
 
-    "scanDefinition": "dagsterredshift_default_scan"
-}
+
 def trigger_scan():
-
     response = requests.post(url, headers=headers, data=payload)
 
     # Check the response status code
     if response.status_code == 201:
-        get_dagster_logger().info('Request successful')
+        get_dagster_logger().info("Request successful")
         # Print the response content
-        scan_id = response.headers.get('X-Soda-Scan-Id')
+        scan_id = response.headers.get("X-Soda-Scan-Id")
         if not scan_id:
-            get_dagster_logger().info('X-Soda-Scan-Id header not found')
+            get_dagster_logger().info("X-Soda-Scan-Id header not found")
             exit(1)
 
     else:
-        get_dagster_logger().error(f'Request failed with status code {response.status_code}')
+        get_dagster_logger().error(
+            f"Request failed with status code {response.status_code}"
+        )
         print(response.text)
         exit(1)
     # Check the scan status in a loop
-    
+
     while scan_id:
-        get_response = requests.get(f'{url}/{scan_id}', headers=headers)
-        
+        get_response = requests.get(f"{url}/{scan_id}", headers=headers)
+
         if get_response.status_code == 200:
             scan_status = get_response.json()
-            state = scan_status.get('state')
-            print(f'Scan state: {state}')
-            
-            if state in ['queuing', 'executing']:
+            state = scan_status.get("state")
+            print(f"Scan state: {state}")
+
+            if state in ["queuing", "executing"]:
                 # Wait for a few seconds before checking again
                 time.sleep(10)
-                print(f'Scan state: {state}')
-            elif state == 'completed':
-                print('Scan completed successfully')
-                get_dagster_logger().info(f'Scan: {state} successfully')
-                return state
-                
+                print(f"Scan state: {state}")
+            elif state == "completed":
+                print("Scan completed successfully")
+                cloud_url = scan_status.get("cloudUrl", "N/A")
+
+                get_dagster_logger().info(f"Scan: {state} successfully")
+                return state, cloud_url
+
             else:
-                print(f'Scan failed with state: {state}')
-                get_dagster_logger().info(f'Scan failed with status: {state}')
-                return
-                # raise Failure('Soda Cloud Check Failed')
-                
-                #exit(1)
+                print(f"Scan failed with state: {state}")
+                cloud_url = scan_status.get("cloudUrl", "N/A")
+
+                get_dagster_logger().info(f"Scan failed with status: {state}")
+                return state, cloud_url
         else:
-            print(f'GET request failed with status code {get_response.status_code}')
+            print(f"GET request failed with status code {get_response.status_code}")
             print(get_response.text)
-            get_dagster_logger().info(f'GET request failed with status code {get_response.status_code}')
+            get_dagster_logger().info(
+                f"GET request failed with status code {get_response.status_code}"
+            )
             exit(1)
+
+
 class CustomSampler(Sampler):
     def store_sample(self, sample_context: SampleContext):
+        sample_schema = sample_context.sample.get_schema()
         rows = sample_context.sample.get_rows()
-        json_data = json.dumps(rows) # Convert failed rows to JSON
-        exceptions_df = pd.read_json(json_data) #create dataframe with failed rows
+        json_data = json.dumps(rows)  # Convert failed rows to JSON
+        exceptions_df = pd.read_json(json_data)  # create dataframe with failed rows
         # Define exceptions dataframe
         exceptions_schema = sample_context.sample.get_schema().get_dict()
         exception_df_schema = []
@@ -556,252 +530,165 @@ class CustomSampler(Sampler):
             exception_df_schema.append(n["name"])
         exceptions_df.columns = exception_df_schema
         check_name = sample_context.check_name
-        exceptions_df['failed_check'] = check_name
-        exceptions_df['created_at'] = datetime.now()
-        exceptions_df.to_csv(check_name+".csv", sep=",", index=False, encoding="utf-8")
+        exceptions_df["failed_check"] = check_name
+        exceptions_df["created_at"] = datetime.now()
+        exceptions_df.to_csv(
+            check_name + ".csv", sep=",", index=False, encoding="utf-8"
+        )
         bytestowrite = exceptions_df.to_csv(None).encode()
 
         fs = s3fs.S3FileSystem(key=AWS_ACCESS_KEY, secret=AWS_SECRET_KEY)
-        with fs.open(f's3://soda-dagster/failed_rows/{check_name}.csv', 'wb') as f:
-          f.write(bytestowrite)
-        get_dagster_logger().info(f'Successfuly sent failed rows to {check_name}.csv ')
-# @asset
-# def upload_s3():
-#     print('CSV files uploaded')
-table_names = parse_table_names(checks)
-check_specs = parse_checks_from_yaml(checks)
-
-def extract_check_name(input_check_name: str) -> str:
-    """
-    Extracts the core check name from the input check format by removing 'ingestion_' and
-    the trailing 'for_checks_for_*'.
-    
-    Example:
-    'ingestion_Invalid_row_count_for_brands_for_checks_for_brands' -> 'Invalid row count for brands'
-    """
-    # Remove 'ingestion_' at the start
-    check_name = input_check_name.replace("ingestion_", "")
-    # Remove the trailing 'for_checks_for_*' part
-    check_name = re.sub(r'_for_checks_for_.*$', '', check_name)
-    # Replace underscores with spaces for readability
-    check_name = check_name.replace("_", " ")
-    return check_name.strip()
-def check_pass_fail_from_log(logs: str, check_name: str) -> bool:
-    """
-    Takes a log string and a check_name, returns 1 if the check passed, 0 if it failed.
-    
-    Args:
-        logs (str): The logs to parse.
-        check_name (str): The specific check name to search for in the format 'ingestion_<check_name>'.
-    
-    Returns:
-        int: 1 if the check passed, 0 if the check failed.
-    """
-    # Create regex patterns to detect if the check passed or failed
-    check_name = extract_check_name(check_name)
-
-    passed_pattern = re.compile(rf"{re.escape(check_name)}\s*\[PASSED\]", re.IGNORECASE)
-    failed_pattern = re.compile(rf"{re.escape(check_name)}\s*\[FAILED\]", re.IGNORECASE)
-
-    # Search the logs for the check result
-    if passed_pattern.search(logs):
-        return 1
-    elif failed_pattern.search(logs):
-        return 0
-    else:
-        raise ValueError(f"Check '{check_name}' not found in the logs.")
-@asset(check_specs=check_specs)
-def ingestion(context):
-
-    context.log.info(f"Check Specs: {check_specs}")
+        with fs.open(f"s3://soda-dagster/failed_rows/{check_name}.csv", "wb") as f:
+            f.write(bytestowrite)
+        get_dagster_logger().info(f"Successfuly sent failed rows to {check_name}.csv ")
+        return SampleRef(
+            name=sample_context.sample_name,
+            schema=sample_schema,
+            total_row_count=100,
+            stored_row_count=100,
+            type=SampleRef.TYPE_PYTHON_CUSTOM_SAMPLER,
+            link=os.getenv("s3_bucket"),
+            message=f"Access failed row samples for {sample_context.partition.table.table_name} in external file storage.",
+            link_text="S3 Bucket",
+        )
 
 
-
-    s3 = boto3.client('s3')
-    dataframes = {}
-
-    for i, file_key in enumerate(FILE_KEYS, start=1):
-        try:
-            # Read file from S3
-            response = s3.get_object(Bucket=BUCKET_NAME, Key=file_key)
-            file_content = response['Body']
-
-            # Load CSV into DataFrame
-            df = pd.read_csv(file_content)
-            dataframes[i] = df
-            print('loaded')
-            get_dagster_logger().info(f"Successfully loaded DataFrame for {file_key} with {len(df)} rows.")
-            
-        except Exception as e:
-            get_dagster_logger().error(f"Error loading {file_key}: {e}")
-    failed_rows_cloud= 'false'
+@asset(check_specs=specs, compute_kind='python')
+def s3_files(context):
+    failed_rows_cloud = "false"
     # Initialize Soda Scan
     scan = Scan()
-    scan.set_scan_definition_name('Soda Dagster Demo')
-    scan.set_data_source_name('soda-dagster')
-    dataset_names = [
-    'brands', 'categories', 'customers', 'order_items', 'orders',
-    'products', 'staffs', 'stocks', 'stores'
-]
+    scan.set_scan_definition_name("Soda Dagster Demo")
+    scan.set_data_source_name("soda-dagster")
 
-# Add DataFrames to Soda Scan in a loop
+    # Add DataFrames to Soda Scan in a loop
     try:
         for i, dataset_name in enumerate(dataset_names, start=1):
             scan.add_pandas_dataframe(
                 dataset_name=dataset_name,
-                pandas_df=dataframes[i],
-                data_source_name='soda-dagster'
+                pandas_df=read_s3(f"bikes/{dataset_name}.csv"),
+                data_source_name="soda-dagster",
             )
     except KeyError as e:
-        get_dagster_logger().error(f"DataFrame missing for index {e}. Check if all files are loaded correctly.")
+        get_dagster_logger().error(
+            f"DataFrame missing for index {e}. Check if all files are loaded correctly."
+        )
 
+    scan.add_configuration_yaml_file("pipeline/redshift_config.yml")
 
+    scan.add_sodacl_yaml_files("pipeline/checks")
+    scan.add_variables({"DATE": "2016-01-03"})
 
-    config = f'''
-  soda_cloud:
-      host: demo.soda.io
-      api_key_id: 951b6208-0aaa-49f4-b234-c5a3355e78ca
-      api_key_secret: RQ1_zGxaKAev0osqS3hRtnFjvDkE2EOKgCfK40K0uzVipvc3B8arpw
-  '''
-
-
-    scan.add_sodacl_yaml_file
-    scan.add_configuration_yaml_file
-    scan.add_configuration_yaml_str(config)
-    scan.add_sodacl_yaml_str(checks)
-
-    if failed_rows_cloud == 'false':
+    if failed_rows_cloud == "false":
         scan.sampler = CustomSampler()
 
     scan.execute()
 
-    logs = scan.get_logs_text()
-    check_results = evaluate_checks_from_log(logs, check_specs)
-    scan_results = scan.get_scan_results()
+    api_specs, api_result = checks_api(ingestion_ids, ingestion=True)
 
-    context.log.info("Scan executed successfully.")
-    get_dagster_logger().info(scan_results)
-    get_dagster_logger().info(logs)
-
-    # Fetch cloud URLs for the tables (or checks if available)
-    cloud_urls = get_urls(table_names, ['soda-dagster'])
-
-    # Debug: Log cloud URLs to verify correct data
-    get_dagster_logger().info(f"Cloud URLs: {cloud_urls}")
-    print(f"Cloud URLs: {cloud_urls}")
-
-    # Extend cloud_url_mapping to include both table and check names (or identifiers)
-    # Assuming `get_urls` returns a list of dictionaries with 'table_name', 'check_name', and 'cloud_url'
-    cloud_url_mapping = {}
-    for entry in cloud_urls:
-        table_name = entry.get("table_name").lower()
-        check_name = entry.get("check_name")  # Assuming check_name is provided, or replace with appropriate identifier
-        cloud_url = entry.get("cloud_url")
-        
-        # Create a composite key for mapping: table + check (if check names are available)
-
-        key = table_name  # Fallback to just table_name if no check name is available
-        
-        cloud_url_mapping[key] = cloud_url
-
-    # Perform the checks and attach cloud URLs based on both table and check names
-    all_passed = True
-    for spec in check_specs:
-        # Determine if the check passed or failed from the logs
-        passed = check_pass_fail_from_log(logs, spec.name)
-        context.log.info(f"Check {spec.name}: {'PASSED' if passed else 'FAILED'}")
-        
-        if not passed:
-            all_passed = False
-
-        # Extract the table name from spec.name (last word in "is_in_this_format")
-        table_name_from_spec = spec.name.split('_')[-1].lower()
-        check_name_from_spec = spec.name.lower()  # Normalize check name
-
-        # Construct composite key (table + check) and get the corresponding cloud URL
-        composite_key = table_name_from_spec
-        table_cloud_url = cloud_url_mapping.get(composite_key)
-        
-        # Debug: Log the mapping status for each check
-        context.log.info(f"Table and check composite key: {composite_key}")
-        if table_cloud_url:
-            context.log.info(f"Found cloud URL for {composite_key}: {table_cloud_url}")
-        else:
-            context.log.warning(f"No cloud URL found for {composite_key}")
-        
-        # Add metadata
-        metadata = {
-            "check_name": MetadataValue.text(spec.name)
-        }
-        
-        if table_cloud_url:
-            metadata["Dataset Soda Cloud"] = MetadataValue.url(table_cloud_url)
-
-        # Yield the check result
+    for spec, (name, result, url) in zip(api_specs, api_result):
+        passed = True if result == "pass" else False
         yield AssetCheckResult(
-            passed=bool(passed),
-            metadata=metadata,
+            passed=passed,
+            metadata={"cloudUrl": MetadataValue.url(url)},
             asset_key=spec.asset_key,
-            check_name=spec.name
+            check_name=spec.name,
         )
-
-    if all_passed:
-        yield Output(value=None)
-    else:
-        yield Output(value=None)
-        # return scan.assert_no_checks_fail()
+    yield Output(None)
 
 
+recon_specs, api_result = checks_api(load_from_s3_ids)
 
 
-@asset(deps=[ingestion], compute_kind='python')
+@asset(deps=[s3_files], compute_kind="python", check_specs=recon_specs)
 def load_from_s3(context):
     copy_data()
+    scan = Scan()
+    scan.set_scan_definition_name("Soda Dagster Demo")
+    scan.set_data_source_name("dagsterredshift")
+    scan.add_configuration_yaml_file("pipeline/redshift_config.yml")
+    for name in dataset_names:
+        df = read_s3(f"bikes/{name}.csv")
+        scan.add_pandas_dataframe(
+            dataset_name=f"{name}", pandas_df=df, data_source_name="soda-dagster"
+        )
+
+    scan.add_sodacl_yaml_files("pipeline/recon")
+
+    scan.sampler = CustomSampler()
+
+    scan.execute()
+
+    api_specs, api_result = checks_api(load_from_s3_ids)
+    get_dagster_logger().info(recon_specs)
+
+    for spec, (name, result, url) in zip(api_specs, api_result):
+        passed = True if result == "pass" else False
+        yield AssetCheckResult(
+            passed=passed,
+            metadata={"cloudUrl": MetadataValue.url(url)},
+            asset_key=spec.asset_key,
+            check_name=spec.name,
+        )
+    yield Output(None)
 
 
-
-@dbt_assets(select='marts', manifest=dagsteretl_project.manifest_path)
+@dbt_assets(select="marts", manifest=dagsteretl_project.manifest_path)
 def dbt_staging(context: AssetExecutionContext, dbt: DbtCliResource):
-    yield from dbt.cli(["build"],context=context, manifest=dagsteretl_project.manifest_path).stream()
+    yield from dbt.cli(
+        ["build"], context=context, manifest=dagsteretl_project.manifest_path
+    ).stream()
 
-# @asset_check(asset=AssetKey(["staging", "t_sales_summary"]))
-# def soda_UI_check():
-#     state = trigger_scan()
-#     return AssetCheckResult(
-#         passed=state,  # Set based on your actual check result
-#         asset_key=AssetKey(["staging", "t_sales_summary"])
-#     )
+
 @multi_asset_check(
     specs=[
         AssetCheckSpec("soda_UI_check", asset=AssetKey(["staging", "t_sales_summary"])),
-        AssetCheckSpec("soda_UI_check", asset=AssetKey(["staging", "t_product_popularity"]))
+        AssetCheckSpec(
+            "soda_UI_check", asset=AssetKey(["staging", "t_product_popularity"])
+        ),
     ]
 )
 def soda_UI_check():
-    state = trigger_scan()
+    state, cloudurl = trigger_scan()
     all_passed = True
-    passed_sales_summary = bool(state == 'completed')
+    passed_sales_summary = bool(state == "completed")
     if not passed_sales_summary:
         all_passed = False
     yield AssetCheckResult(
         passed=passed_sales_summary,
-        asset_key=AssetKey(["staging", "t_sales_summary"])
+        asset_key=AssetKey(["staging", "t_sales_summary"]),
+        metadata={"cloudUrl": MetadataValue.url(cloudurl)},
     )
-    passed_product_popularity = bool(state == 'completed')
+    passed_product_popularity = bool(state == "completed")
     if not passed_product_popularity:
         all_passed = False
 
     yield AssetCheckResult(
         passed=passed_product_popularity,
-        asset_key=AssetKey(["staging", "t_product_popularity"])
+        asset_key=AssetKey(["staging", "t_product_popularity"]),
+        metadata={"cloudUrl": MetadataValue.url(cloudurl)},
     )
     if all_passed:
         yield AssetMaterialization(asset_key=AssetKey(["soda_UI_check"]))
     else:
-        raise Failure("One or more Soda Cloud checks failed. Please check your Soda Cloud account for more details.")
+        sys.exit(1)
+        raise Failure(
+            "One or more Soda Cloud checks failed. Please check your Soda Cloud account for more details."
+        )
 
-    
-@dbt_assets(select='prod', manifest=dagsteretl_project.manifest_path)
-def dbt_prod(context: AssetExecutionContext, dbt: DbtCliResource):
-    yield from dbt.cli(["build"], context=context, manifest=dagsteretl_project.manifest_path).stream()   
 
+@asset(deps=[dbt_staging])
+def process_data():
+    sys.exit(1)
+
+
+@asset(deps=[process_data], io_manager_key=None)
+def reporting():
+    return
+
+
+# @dbt_assets(select="prod", manifest=dagsteretl_project.manifest_path)
+# def dbt_prod(context: AssetExecutionContext, dbt: DbtCliResource):
+#     yield from dbt.cli(
+#         ["build"], context=context, manifest=dagsteretl_project.manifest_path
+#     ).stream()

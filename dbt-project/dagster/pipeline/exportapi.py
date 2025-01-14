@@ -1,20 +1,22 @@
-import requests
-import sys
-import pandas as pd
-import time
-from dagster import get_dagster_logger, asset, AssetExecutionContext
-from . import assets
-from datetime import datetime
-import psycopg2
-from psycopg2 import sql
 import os
+import sys
+import time
+from datetime import datetime
+
+import pandas as pd
+import psycopg2
+import requests
+from dagster import AssetExecutionContext, asset, get_dagster_logger
 from dotenv import load_dotenv
+from psycopg2 import sql
+
+from . import assets
 
 
+# deps=[assets.dbt_prod]
 # This script will fetch all checks/datasets in Soda and save them in Redshift.
-@asset(deps=[assets.dbt_prod], compute_kind="python")
+@asset(compute_kind="python")
 def export_report():
-
     load_dotenv()
 
     # Soda Cloud Instance
@@ -101,11 +103,11 @@ def export_report():
     df_datasets["datasource_type"] = df_datasets["datasource"].apply(
         lambda x: x["type"] if x else None
     )
-    
+
     # Drop the "owners" column before inserting
     if "owners" in df_datasets.columns:
         df_datasets.drop(columns=["owners"], inplace=True)
-    
+
     df_datasets.drop(columns=["datasource"], inplace=True)
 
     # Fetch all Checks
@@ -228,18 +230,20 @@ def export_report():
         columns = ", ".join(df.columns)
         values = ", ".join(["%s"] * len(df.columns))
         insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
-        
+
         with conn.cursor() as cur:
             for row in df.itertuples(index=False, name=None):
                 # Truncate any string value exceeding 500 characters
                 truncated_row = tuple(
-                    (str(item)[:500] if isinstance(item, str) and len(item) > 500 else item) 
+                    (
+                        str(item)[:500]
+                        if isinstance(item, str) and len(item) > 500
+                        else item
+                    )
                     for item in row
                 )
                 cur.execute(insert_query, truncated_row)
             conn.commit()
-
-
 
     # Check for existing table and add new columns if needed
     def update_table_structure(conn, df, table_name):
@@ -284,5 +288,6 @@ def export_report():
     # Close connection
     conn.close()
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     export_report()
